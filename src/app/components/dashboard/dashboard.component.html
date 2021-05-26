@@ -1,0 +1,46 @@
+<mat-toolbar>
+    <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>PROGRAM</span>
+    <span class="example-spacer"></span>
+
+    <button *ngIf="isAdmin" mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with heart icon">
+        <mat-icon>recent_actors</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button *ngFor="let k of kompanije" (click)="izaberiKompaniju(k.id)" mat-menu-item> <span
+                class="material-icons">
+                badge
+            </span> {{k.kompanija}}
+            {{ ' | '+ k.ime + ' ' + k.prezime}}
+
+        </button>
+        <button (click)="dodajPreduzece()" mat-menu-item>Dodaj preduzece</button>
+        <button mat-menu-item>Odjava</button>
+    </mat-menu>
+</mat-toolbar>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+        <button routerLink="" class="main-btn" mat-stroked-button color="accent">
+            <span class="material-icons">
+                dashboard
+            </span> DASHBOARD
+        </button>
+        <button routerLink="klijenti" class="main-btn" mat-stroked-button color="accent">
+            <span class="material-icons">
+                group
+            </span> KLIJENTI
+        </button>
+        <button routerLink="proizvodi" class="main-btn" mat-stroked-button color="accent">
+            <span class="material-icons">
+                category
+            </span> PROIZVODI
+        </button>
+    </mat-drawer>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

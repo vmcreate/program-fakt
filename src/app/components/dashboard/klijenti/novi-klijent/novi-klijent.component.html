@@ -1,0 +1,111 @@
+<h2><a [routerLink]="['/dashboard/','klijenti']">Klijenti</a> / Novi klijent</h2>
+
+<form #f="ngForm" (ngSubmit)="dodajKlijenta(f)">
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Detalji</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Ime</mat-label>
+                <input matInput type="text" name="ime" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Prezime</mat-label>
+                <input matInput type="text" name="prezime" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Maticni broj</mat-label>
+                <input matInput type="text" name="maticni_broj" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>PIB</mat-label>
+                <input matInput type="text" name="pib" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Web adresa</mat-label>
+                <input matInput type="text" name="web_adresa" ngModel>
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Kontakti</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>E-posta</mat-label>
+                <input matInput type="email" name="email" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Sifra</mat-label>
+                <input matInput type="password" name="password" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Telefon</mat-label>
+                <input matInput type="tel" name="telefon" ngModel>
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Adresa</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Ulica</mat-label>
+                <input matInput type="text" name="ulica" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Sprat/Soba</mat-label>
+                <input matInput type="text" name="sprat_soba" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Grad</mat-label>
+                <input matInput type="text" name="grad" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Okrug</mat-label>
+                <input matInput type="text" name="okrug" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Postanski broj</mat-label>
+                <input matInput type="text" name="ptp" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Zemlja</mat-label>
+                <input matInput type="text" name="zemlja" ngModel>
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Napomena</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Napomena</mat-label>
+                <textarea matInput ngModel name="napomena"> </textarea>
+            </mat-form-field>
+
+
+        </mat-card-content>
+
+    </mat-card>
+    <div class="dugmad">
+        <button type="button" [routerLink]="['/dashboard/','klijenti']" class="main-btn" mat-raised-button>
+            <span class="material-icons">
+                delete_forever
+            </span>Odustani
+        </button>
+        <button type="submit" class="main-btn" mat-raised-button>
+            <span class="material-icons">
+                save
+            </span>Sacuvaj
+        </button>
+    </div>
+</form>

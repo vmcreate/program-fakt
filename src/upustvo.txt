@@ -1,0 +1,33 @@
+--prvi korak instalirati projekat x
+--drugi korak instalirati firebase u pojektu x
+--treci korak instalirati material u projektu x
+--C za login x
+--router outlet sistem  x
+--dodavanje kompanije x
+--ocitavanje kompanija x
+--event subject  izabranu kompaniju x
+--dodavanje klijenta
+--dodavanje proizvoda 
+--klijent da ima svoj profil / kad dodajemo klijenta da ga i registrujemo, email,password.
+
+
+
+
+
+
+
+
+
+
+
+
+-------------
+Firebase Data Construction
+
+kompanija/:id/
+            -ime i prezime
+            -podaci o kompaniji
+                                /klijenti/:id/podaci o klijentu
+                                /produkti/:id/podaci o produktu
+                                /racuni/:id/racuni
+--------------                                

@@ -1,0 +1,19 @@
+.headerBtn{
+    display: flex;
+    width: 90%;
+    margin: 0px auto;
+    justify-content: flex-end;
+    align-items: center;
+}
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }

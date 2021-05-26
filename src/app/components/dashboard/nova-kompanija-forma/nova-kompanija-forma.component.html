@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Dodaj preduzece</h1>
+<div mat-dialog-content>
+    <form #f="ngForm" (ngSubmit)="dodaj(f)">
+        <mat-form-field>
+            <mat-label>Ime kompanije</mat-label>
+            <input matInput type="text" name="kompanija" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Ime</mat-label>
+            <input matInput type="text" name="ime" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Prezime</mat-label>
+            <input matInput type="text" name="prezime" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Sifra</mat-label>
+            <input matInput type="password" name="password" ngModel>
+        </mat-form-field>
+        <div mat-dialog-actions>
+            <button mat-button type="button" (click)="onNoClick()">Zatvori</button>
+            <button mat-button type="submit">Dodaj</button>
+        </div>
+    </form>
+</div>

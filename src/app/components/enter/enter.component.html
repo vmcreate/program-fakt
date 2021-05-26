@@ -1,0 +1,14 @@
+<div class="container">
+    <form #f="ngForm" (ngSubmit)="login(f)" class="login-card">
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input ngModel name="email" matInput type="email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Sifra</mat-label>
+            <input ngModel name="password" matInput type="password">
+        </mat-form-field>
+        <button mat-raised-button color="primary">Prijava</button>
+    </form>
+</div>

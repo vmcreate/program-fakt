@@ -1,0 +1,36 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .content{
+   display: flex;
+   max-width: 80%;
+   flex-direction: column;
+    margin: 0px auto;
+    padding: 10px;
+}
+.example-container {
+    min-width: 80vw;
+    min-height: 100vh;
+   
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+    background-color: #2e2d2d;
+    box-shadow: 6px 2px 20px 2px rgba(0,0,0,.3);
+    width: 240px;
+
+  }
+  .example-sidenav button{
+      margin-top: 10px;
+      display: flex;
+      width: 100%;
+  }
+  
