@@ -1,17 +1,17 @@
 export interface Klijent {
     ime?: string;
     prezime?: string;
-    mb?: string;
+    maticni_broj?: string;
     pib?: string;
-    web?: string;
+    web_adresa?: string;
     email: string;
     password: string;
     telefon?: string;
     ulica?: string;
-    sprat?: string;
+    sprat_soba?: string;
     grad?: string;
     okrug?: string;
-    ptt?: string;
+    ptp?: string;
     zemlja?: string;
     napomena?: string;
     id?: string;

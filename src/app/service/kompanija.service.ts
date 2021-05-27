@@ -19,8 +19,8 @@ export class KompanijaService {
     return this.db.collection('kompanija').snapshotChanges();
   }
   getKompaniju() {
-    return this.db.collection('profil').doc('kompanija').snapshotChanges().subscribe((res: any) => {
-      const kompanija = res.payload.data().kompanija;
+    return this.db.collection('profil').doc('kompanija').snapshotChanges().subscribe(async (res: any) => {
+      const kompanija = await res.payload.data().kompanija;
       this.izabranaKompanija.next(kompanija);
     })
   }

@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { KlijentiComponent } from './klijenti/klijenti.component';
 import { ProizvodiComponent } from './proizvodi/proizvodi.component';
 import { NoviKlijentComponent } from './klijenti/novi-klijent/novi-klijent.component';
+import { ProfilComponent } from './klijenti/profil/profil.component';
 
 
 
@@ -18,6 +19,8 @@ const routes: Routes = [
             },
             { path: 'proizvodi', component: ProizvodiComponent },
             { path: 'klijenti/novi-klijent', component: NoviKlijentComponent },
+            { path: 'klijenti/:id', component: ProfilComponent },
+
         ]
     }
 

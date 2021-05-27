@@ -1,43 +1,40 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Klijent } from 'src/app/model/Klijent';
 import { KlijentService } from 'src/app/service/klijent.service';
 import { KompanijaService } from 'src/app/service/kompanija.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-klijenti',
   templateUrl: './klijenti.component.html',
   styleUrls: ['./klijenti.component.css']
 })
-export class KlijentiComponent {
-  displayedColumns: string[] = ['id'];
-  dataSource: MatTableDataSource<any>;
-  totalPosts = 0;
-  postsPerPage = 5;
-  currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10, 100];
-  constructor() {
-    // Create 100 users
-    const users = [12, 3, 4, 5, 6]
+export class KlijentiComponent implements OnInit, OnDestroy {
+  klijenti?: Array<any> = [];
+  fetchKlijente?: Array<Klijent> = [];
+  displayedColumns: string[] = ['broj', 'ime', 'pib', 'detalji'];
+  subKompanija?: Subscription;
+  subKlijent?: Subscription;
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-    console.log(this.dataSource)
+  constructor(private klijentiService: KlijentService, private kompanijaService: KompanijaService) {
+
   }
+  ngOnInit() {
+    this.kompanijaService.getKompaniju();
+    this.subKompanija = this.kompanijaService.getIzabranuKompaniju().subscribe(res => {
+      this.klijenti = [];
+      this.klijentiService.getKlijente(res).subscribe(res => {
+        res.map((klijent => { this.klijenti?.push({ ...klijent.payload.doc.data(), id: klijent.payload.doc.id }) }))
+        this.fetchKlijente = this.klijenti;
+      })
+    })
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
-  onChangedPage(pageData: PageEvent) {
-
-    this.currentPage = pageData.pageIndex + 1;
-    this.postsPerPage = pageData.pageSize;
+  ngOnDestroy() {
+    this.subKlijent?.unsubscribe();
+    this.subKlijent?.unsubscribe();
 
   }
 }

@@ -1,11 +1,5 @@
 {
-  "targets": {
-    "fakt-program": {
-      "hosting": {
-        "program-fakt": [
-          "fakt-program"
-        ]
-      }
-    }
+  "projects": {
+    "default": "fakt-program"
   }
 }

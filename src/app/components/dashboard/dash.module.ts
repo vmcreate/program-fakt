@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/app/modul/material.module';
 import { NovaKompanijaFormaComponent } from './nova-kompanija-forma/nova-kompanija-forma.component';
 import { FormsModule } from '@angular/forms';
 import { NoviKlijentComponent } from './klijenti/novi-klijent/novi-klijent.component';
+import { ProfilComponent } from './klijenti/profil/profil.component';
 
 
 
@@ -17,7 +18,7 @@ import { NoviKlijentComponent } from './klijenti/novi-klijent/novi-klijent.compo
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent
+    NoviKlijentComponent, ProfilComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule

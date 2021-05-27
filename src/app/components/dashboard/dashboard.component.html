@@ -11,15 +11,15 @@
         <mat-icon>recent_actors</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button *ngFor="let k of kompanije" (click)="izaberiKompaniju(k.id)" mat-menu-item> <span
-                class="material-icons">
+        <button [ngStyle]="{'color': k.id === izabranaKompanija ? 'red' : 'white' }" *ngFor="let k of kompanije"
+            (click)="izaberiKompaniju(k.id)" mat-menu-item> <span class="material-icons">
                 badge
             </span> {{k.kompanija}}
             {{ ' | '+ k.ime + ' ' + k.prezime}}
 
         </button>
         <button (click)="dodajPreduzece()" mat-menu-item>Dodaj preduzece</button>
-        <button mat-menu-item>Odjava</button>
+        <button (click)="odjava()" mat-menu-item>Odjava</button>
     </mat-menu>
 </mat-toolbar>
 <mat-drawer-container class="example-container" autosize>

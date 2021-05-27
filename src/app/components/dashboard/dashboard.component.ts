@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Kompanija } from 'src/app/model/Kompanija';
+import { AuthService } from 'src/app/service/auth.service';
 import { KompanijaService } from 'src/app/service/kompanija.service';
 import { NovaKompanijaFormaComponent } from './nova-kompanija-forma/nova-kompanija-forma.component';
 
@@ -12,7 +13,8 @@ import { NovaKompanijaFormaComponent } from './nova-kompanija-forma/nova-kompani
 export class DashboardComponent implements OnInit {
   kompanije?: Array<Kompanija> = [];
   isAdmin?: boolean = false;
-  constructor(public dialog: MatDialog, private kompanijaDb: KompanijaService) { }
+  izabranaKompanija?: string;
+  constructor(public dialog: MatDialog, private kompanijaDb: KompanijaService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.kompanijaDb.getKompanije().subscribe(res => {
@@ -35,6 +37,9 @@ export class DashboardComponent implements OnInit {
     });
   }
   izaberiKompaniju(id: string) {
-    this.kompanijaDb.izaberiKompaniju(id).then(() => this.kompanijaDb.getIzabranuKompaniju().subscribe(res => console.log(res)))
+    this.kompanijaDb.izaberiKompaniju(id).then(() => this.kompanijaDb.getIzabranuKompaniju().subscribe(res => this.izabranaKompanija = res))
+  }
+  odjava() {
+    this.auth.logout();
   }
 }

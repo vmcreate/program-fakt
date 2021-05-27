@@ -14,6 +14,9 @@ export class AuthService {
   login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
+  logout() {
+    return this.auth.signOut();
+  }
   createCompany(email: string, password: string, ime: string, prezime: string, kompanija: string) {
     return this.auth.createUserWithEmailAndPassword(email, password).then((user: any) => {
       this.db.collection('kompanija').doc(user.user.uid)
