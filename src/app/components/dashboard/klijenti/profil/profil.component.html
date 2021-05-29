@@ -8,6 +8,10 @@
         </mat-card-header>
         <mat-card-content>
             <mat-form-field>
+                <mat-label>Ime Firme</mat-label>
+                <input matInput type="text" name="firma" [(ngModel)]="klijent.firma">
+            </mat-form-field>
+            <mat-form-field>
                 <mat-label>Ime</mat-label>
                 <input matInput type="text" name="ime" [(ngModel)]="klijent.ime">
             </mat-form-field>
@@ -99,6 +103,11 @@
             <span class="material-icons">
                 save
             </span>Sacuvaj
+        </button>
+        <button (click)="deleteKlijenta()" type="button" class="main-btn" mat-raised-button>
+            <span class="material-icons">
+                delete
+            </span>Obrisi
         </button>
     </div>
 </form>

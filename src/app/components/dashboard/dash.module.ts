@@ -9,6 +9,12 @@ import { NovaKompanijaFormaComponent } from './nova-kompanija-forma/nova-kompani
 import { FormsModule } from '@angular/forms';
 import { NoviKlijentComponent } from './klijenti/novi-klijent/novi-klijent.component';
 import { ProfilComponent } from './klijenti/profil/profil.component';
+import { NoviProizvodComponent } from './proizvodi/novi-proizvod/novi-proizvod.component';
+import { ProizvodComponent } from './proizvodi/proizvod/proizvod.component';
+import { PonudeComponent } from './ponude/ponude.component';
+import { RacunComponent } from './racun/racun.component';
+import { NovPredracunComponent } from './ponude/nov-predracun/nov-predracun.component';
+import { PonudaDetaljiComponent } from './ponude/ponuda-detalji/ponuda-detalji.component';
 
 
 
@@ -18,7 +24,7 @@ import { ProfilComponent } from './klijenti/profil/profil.component';
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent
+    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule

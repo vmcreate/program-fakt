@@ -21,7 +21,7 @@ form .klijent-card mat-card-content{
     justify-content: center;
     align-items: center;
 }
-.dugmad button:first-of-type{
+.dugmad button{
     margin-right: 3px;
 }
 @media screen and (max-width:1000px){

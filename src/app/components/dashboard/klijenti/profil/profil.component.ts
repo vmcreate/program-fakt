@@ -23,6 +23,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.kompanijaService.getKompaniju();
     this.routeSub = this.route.params.subscribe(params => {
       const id = params['id']
       this.klijentService.getKlijenta(id).subscribe((response: any) => {
@@ -36,8 +37,11 @@ export class ProfilComponent implements OnInit, OnDestroy {
       .then(() => this.router.navigate(['/dashboard/', 'klijenti']))
   }
 
+  deleteKlijenta() {
+    this.klijentService.deleteKlijenta(this.klijent?.id, this.kompanijaId)
 
+  }
   ngOnDestroy() {
-    this.routeSub?.add;
+    this.routeSub?.unsubscribe();
   }
 }

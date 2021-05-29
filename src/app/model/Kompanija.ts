@@ -4,4 +4,6 @@ export interface Kompanija {
     prezime: string;
     email: string;
     id: string;
+    predracun: 0;
+    racun: 0;
 }

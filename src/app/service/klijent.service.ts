@@ -32,4 +32,7 @@ export class KlijentService {
     await this.db.collection('klijenti').doc(klijentId).update(data);
     this.db.collection('kompanija').doc(adminId).collection('klijenti').doc(klijentId).update(data);
   }
+  async deleteKlijenta(klijentId: any, adminId: any) {
+    this.db.collection('kompanija').doc(adminId).collection('klijenti').doc(klijentId).delete();
+  }
 }

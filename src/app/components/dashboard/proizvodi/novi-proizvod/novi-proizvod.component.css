@@ -1,0 +1,11 @@
+@import '../../klijenti/novi-klijent/novi-klijent.component.css';
+
+.proizvod-card{
+    width: 100%;
+    margin: 10px auto;
+}
+
+form .proizvod-card mat-card-content{
+    display: flex;
+    flex-direction: column;
+}

@@ -21,8 +21,13 @@ export class KompanijaService {
   getKompaniju() {
     return this.db.collection('profil').doc('kompanija').snapshotChanges().subscribe(async (res: any) => {
       const kompanija = await res.payload.data().kompanija;
+      console.log(kompanija)
       this.izabranaKompanija.next(kompanija);
     })
+  }
+  getKompInfo(id: string) {
+    return this.db.collection('kompanija').doc(id).snapshotChanges()
+
   }
   async isAdminKompanija(id: string) {
     this.db.firestore.doc(`/kompanija/${id}`).get()
@@ -41,5 +46,7 @@ export class KompanijaService {
       this.izabranaKompanija.next(id)
     })
   }
-
+  updatePredracun(id: any, predracun: any) {
+    return this.db.collection('kompanija').doc(id).update({ predracun: predracun });
+  }
 }

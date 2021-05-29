@@ -1,0 +1,105 @@
+<h2><a [routerLink]="['/dashboard/','ponude']">Ponude</a> / {{brojponude + '-' + godina}}</h2>
+
+<form class="racunHeader">
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field appearance="fill">
+                <mat-label>Klijent:</mat-label>
+                <input matInput name="klijent" disabled [(ngModel)]="klijent">
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field appearance="fill">
+                <mat-label>Datum ponude</mat-label>
+                <input matInput name="datumIzdavanja" [(ngModel)]="datumIzdavanja" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Datum vazenja</mat-label>
+                <input matInput name="datumVazenja" [(ngModel)]="datumVazenja" [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Deposit</mat-label>
+                <input matInput type="number" (change)="depositEv()" name="deposit" [(ngModel)]="deposit">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Mesto izdavanja</mat-label>
+                <input matInput type="text" name="mesto" [(ngModel)]="mesto">
+            </mat-form-field>
+
+
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Predracun #</mat-label>
+                <input disabled matInput type="number" name="brojponude" [(ngModel)]="brojponude">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Popust #</mat-label>
+
+                <input matInput type="number" (change)="popustEv()" name="popust" [(ngModel)]="popust">
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+</form>
+<mat-divider></mat-divider>
+<table>
+    <tr>
+        <th>R.Broj</th>
+        <th>Stavka</th>
+        <th>Opis</th>
+        <th>Cena</th>
+        <th>Kolicina</th>
+        <th>Ukupno</th>
+        <th>Akcija</th>
+    </tr>
+    <tr *ngFor="let ip of izabraniProizvodi; let i = index;">
+        <td>{{i+1}}</td>
+        <td>{{ip.proizvod}}</td>
+        <td>{{ip.napomena}}</td>
+        <td>{{ip.cena}}</td>
+        <td> <input (change)="changeKolicinu(target,i)" #target matInput type="number" min="1" [value]="ip.kolicina">
+        </td>
+        <td>{{ip.ukupno}},00 RSD</td>
+        <td> <button (click)="deleteIzabraniProizvod(i)" mat-icon-button color="warn"
+                aria-label="Example icon button with a heart icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </tr>
+
+</table>
+
+<button mat-button [matMenuTriggerFor]="menu"> <span class="material-icons">
+        add
+    </span>Dodaj Stavku</button>
+<mat-menu #menu="matMenu">
+    <button *ngFor="let p of proizvodi" mat-menu-item (click)="dodajStavku(p)">{{p.proizvod}}</button>
+</mat-menu>
+<mat-divider></mat-divider>
+<div class="racunKonacni">
+    <mat-list role="list">
+        <mat-list-item role="listitem">Ukupno: {{ukupno}},00 RSD</mat-list-item>
+        <mat-list-item role="listitem" *ngIf="popust > 0">Popust: {{popust}},00 RSD</mat-list-item>
+        <mat-list-item role="listitem" *ngIf="deposit > 0">Deposit: {{deposit}},00 RSD</mat-list-item>
+        <mat-list-item role="listitem">Sve Ukupno {{sveUkupno}},00 RSD</mat-list-item>
+    </mat-list>
+</div>
+<mat-divider></mat-divider>
+
+<div class="kontrole">
+    <button mat-flat-button (click)="nacrt()">Zapamti Nacrt</button>
+    <button mat-flat-button color="accent" (click)="zavrsi()">Zavrsi</button>
+    <button mat-flat-button color="primary" (click)="posalji()">Posalji na E-mail</button>
+    <button mat-flat-button color="warn" (click)="deleteP()">Obrisi Predracun</button>
+</div>

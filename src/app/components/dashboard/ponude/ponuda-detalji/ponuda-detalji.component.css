@@ -1,0 +1,51 @@
+@import '../../klijenti/novi-klijent/novi-klijent.component.css';
+
+.racunHeader{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px auto;
+}
+
+.racunHeader mat-card{
+    width: 29%;
+    margin: 5px;
+}
+.racunHeader mat-card mat-card-content{
+    display: flex;
+    flex-direction: column;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background: #424242;
+    margin-top: 10px;
+    box-shadow:  0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: center !important;
+    padding: 8px;
+  }
+  
+  .racunKonacni{
+width: 100%;
+display: flex;
+justify-content: flex-end;
+  }
+  .mat-list-base .mat-list-item{
+    font-size: 14px !important;
+    border-bottom: 1px solid white;
+  }
+  mat-divider{
+    margin:10px 0;
+  }
+  .kontrole{
+    display: flex;
+    justify-content: center;
+  }
+  .kontrole button{
+    margin: 2px;
+  }

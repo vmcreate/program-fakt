@@ -6,9 +6,11 @@
 --dodavanje kompanije x
 --ocitavanje kompanija x
 --event subject  izabranu kompaniju x
---dodavanje klijenta
---dodavanje proizvoda 
---klijent da ima svoj profil / kad dodajemo klijenta da ga i registrujemo, email,password.
+--dodavanje klijenta x
+--dodavanje proizvoda x 
+--klijent da ima svoj profil / kad dodajemo klijenta da ga i registrujemo, email,password. x
+--dodavanje predracuna
+--dodavanje racuna
 
 
 
@@ -30,4 +32,5 @@ kompanija/:id/
                                 /klijenti/:id/podaci o klijentu
                                 /produkti/:id/podaci o produktu
                                 /racuni/:id/racuni
+                                /predracuni/:id/predracuni
 --------------                                

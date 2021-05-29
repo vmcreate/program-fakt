@@ -1,4 +1,5 @@
 export interface Klijent {
+    firma: string;
     ime?: string;
     prezime?: string;
     maticni_broj?: string;
