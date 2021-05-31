@@ -14,17 +14,21 @@
         <mat-card-content>
             <mat-form-field appearance="fill">
                 <mat-label>Datum ponude</mat-label>
-                <input matInput name="datumIzdavanja" [(ngModel)]="datumIzdavanja" [matDatepicker]="picker">
+                <input matInput name="datumIzdavanja" [(ngModel)]="datumIzdavanja " [matDatepicker]="picker">
+
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+
             </mat-form-field>
+            <span *ngIf="datumIzdavanja">Datum izdavanja: {{datumIzdavanja.seconds * 1000 | date:'dd.MM.YYYY.' }}</span>
+
             <mat-form-field appearance="fill">
                 <mat-label>Datum vazenja</mat-label>
                 <input matInput name="datumVazenja" [(ngModel)]="datumVazenja" [matDatepicker]="picker2">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
-
+            <span *ngIf="datumVazenja">Datum vazenja: {{datumVazenja.seconds * 1000 | date:'dd.MM.YYYY.' }}</span>
             <mat-form-field>
                 <mat-label>Deposit</mat-label>
                 <input matInput type="number" (change)="depositEv()" name="deposit" [(ngModel)]="deposit">
@@ -98,8 +102,98 @@
 <mat-divider></mat-divider>
 
 <div class="kontrole">
+    <button mat-flat-button (click)="convetToPDF()">Preuzmi PDF</button>
     <button mat-flat-button (click)="nacrt()">Zapamti Nacrt</button>
     <button mat-flat-button color="accent" (click)="zavrsi()">Zavrsi</button>
     <button mat-flat-button color="primary" (click)="posalji()">Posalji na E-mail</button>
     <button mat-flat-button color="warn" (click)="deleteP()">Obrisi Predracun</button>
+
+</div>
+
+<div id="pdf">
+    <div class="kompanijaInfo">
+        <div class="info">
+            <div class="logo">
+                <img [src]="kompanija?.imageUrl" width="150px">
+            </div>
+        </div>
+        <div class="info" *ngIf="kompanija">
+            <ul>
+                <li>{{kompanija.kompanija}}</li>
+                <li>{{kompanija.ulica}}</li>
+                <li>{{kompanija.grad + ' ' + kompanija.ptp}}</li>
+                <li>{{kompanija.web_adresa}}</li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>PIB: {{kompanija?.pib}} </li>
+                <li>MB: {{kompanija?.maticni_broj}} </li>
+                <li>{{kompanija?.email}}</li>
+                <li>Tekući račun: 325-9500700005855-90
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h2>PONUDA</h2>
+    <hr>
+    <div class="klijentInfo">
+        <div class="info">
+            <ul>
+                <li>Broj ponude: {{brojponude + '-' + godina}}</li>
+                <li *ngIf="datumIzdavanja">Datum ponude: {{datumIzdavanja.seconds * 1000 | date:'dd.MM.YYYY.' }}
+                </li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>{{klijent}}</li>
+                <li>{{ulica}}</li>
+                <li>{{mesto}}</li>
+
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>PIB: {{klijentPib}}</li>
+                <li>MB: {{klijentMB}} </li>
+
+            </ul>
+        </div>
+    </div>
+    <h2>STAVKE</h2>
+    <hr>
+    <div class="proizvod">
+        <table>
+            <tr>
+                <th>R.Broj</th>
+                <th>Stavka</th>
+                <th>Opis</th>
+                <th>Cena</th>
+                <th>Kolicina</th>
+                <th>Ukupno</th>
+            </tr>
+            <tr *ngFor="let ip of izabraniProizvodi; let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{ip.proizvod}}</td>
+                <td>{{ip.napomena}}</td>
+                <td>{{ip.cena}}</td>
+                <td> {{ip.kolicina}}
+                </td>
+                <td>{{ip.ukupno}},00 RSD</td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div class="cenaKonacna">
+        <div class="info">
+            <ul>
+                <li>Ukupno: {{ukupno}}.00 RSD</li>
+                <li *ngIf="popust > 0">Popust: {{popust}}.00 RSD</li>
+                <li *ngIf="deposit > 0">Deposit: {{deposit}}.00 RSD</li>
+                <li>Sve ukupno: {{sveUkupno}}.00 RSD</li>
+            </ul>
+        </div>
+    </div>
 </div>

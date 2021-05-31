@@ -28,6 +28,7 @@ table {
     border: 1px solid #dddddd;
     text-align: center !important;
     padding: 8px;
+  
   }
   
   .racunKonacni{
@@ -48,4 +49,57 @@ justify-content: flex-end;
   }
   .kontrole button{
     margin: 2px;
+  }
+  #pdf{
+    width: 1004px;
+    height: 1400px;
+    background-color: white;
+    padding: 20px;
+    margin: 0;
+  }
+  .kompanijaInfo,.klijentInfo{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .kompanijaInfo .info,.klijentInfo .info{
+    color: black;
+  }
+  .kompanijaInfo .info ul li,.klijentInfo .info ul li{
+    list-style: none;
+  }
+  h2:first-of-type{
+    color: white;
+  }
+  h2{
+    color:black;
+    margin-bottom: 1px;
+  }
+  #pdf .proizvod table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #pdf .proizvod td, th {
+    border:none;
+    border-bottom: 1px solid black;
+    text-align: left;
+    padding: 8px;
+    background: white;
+    color: black;
+  }
+  .cenaKonacna{
+display: flex;
+justify-content: flex-end;
+
+  }
+  .cenaKonacna .info{
+    color: black;
+
+  }
+  .cenaKonacna .info ul li{
+    list-style: none;
+    border-bottom: 1px solid black;
+    line-height: 35px;
   }

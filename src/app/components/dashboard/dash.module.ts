@@ -15,6 +15,7 @@ import { PonudeComponent } from './ponude/ponude.component';
 import { RacunComponent } from './racun/racun.component';
 import { NovPredracunComponent } from './ponude/nov-predracun/nov-predracun.component';
 import { PonudaDetaljiComponent } from './ponude/ponuda-detalji/ponuda-detalji.component';
+import { PostavkeComponent } from './postavke/postavke.component';
 
 
 
@@ -24,7 +25,7 @@ import { PonudaDetaljiComponent } from './ponude/ponuda-detalji/ponuda-detalji.c
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent
+    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule

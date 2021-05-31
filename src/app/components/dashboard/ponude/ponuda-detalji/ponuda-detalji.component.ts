@@ -30,13 +30,16 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   ukupno: number = 0;
   sveUkupno?: number = 0;
   izabranaFirma?: Klijent;
-  datumIzdavanja?: Date;
-  datumVazenja?: Date;
+  datumIzdavanja?: any;
+  datumVazenja?: any;
   mesto: string | undefined;
+  ulica?: string;
   routeId?: string;
   KlijentUid?: string;
-
+  klijentFirma?: string;
   subKompanija?: Subscription;
+  klijentPib: any;
+  klijentMB: any;
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -56,8 +59,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       this.kompanijaId = kompanijaId;
       this.racunService.getPredracun(kompanijaId, this.routeId).subscribe((res: any) => {
 
-        const { brojponude, mesto, datumIzdavanja, datumVazenja, status, ime, proizvodi, deposit, popust, ukupno, godina, klijentUid }: any = res.payload.data();
-
+        const { brojponude, mesto, datumIzdavanja, pib, ulica, maticni_broj, datumVazenja, status, ime, proizvodi, deposit, popust, ukupno, godina, klijentUid }: any = res.payload.data();
         this.brojponude = brojponude;
         this.mesto = mesto;
         this.datumIzdavanja = datumIzdavanja;
@@ -66,15 +68,22 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
         this.godina = godina;
         this.deposit = Number(deposit);
         this.popust = Number(popust);
+        this.ulica = ulica;
         this.izabraniProizvodi = [];
+        this.klijentPib = pib;
+        this.klijentMB = maticni_broj;
         this.KlijentUid = klijentUid;
         proizvodi?.map((proizvod: any) => {
           this.izabraniProizvodi.push(proizvod)
         })
+        this.klijentService.getKlijenta(klijentUid).subscribe((res: any) => {
+          this.klijentMB = res.payload.data().maticni_broj;
+          this.klijentPib = res.payload.data().pib;
+          this.klijentFirma = res.payload.data().firma;
+        })
+
         this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
         this.sveUkupno = this.ukupno - this.deposit - this.popust;
-
-
       })
       this.proizvodService.getProizvode(kompanijaId).subscribe(res => {
         this.proizvodi = [];
@@ -82,7 +91,10 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
           this.proizvodi?.push({ ...proizvod.payload.doc.data(), id: proizvod.payload.doc.id })
         })
       })
-
+      this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
+        this.kompanija = { ...res.payload.data() };
+        console.log(this.kompanija)
+      })
     })
   }
   dodajStavku(p: Proizvod) {
@@ -130,20 +142,19 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
 
   }
   public convetToPDF() {
-    const data: any = document.getElementById('contentToConvert');
-    html2canvas(data).then(canvas => {
-      // Few necessary setting options
-      const imgWidth = 200;
-      const pageHeight = 295;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      const heightLeft = imgHeight;
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
-      const position = 0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.autoPrint();
-      pdf.output('dataurlnewwindow');
-      // pdf.save('new-file.pdf'); // Generated PDF
+    let DATA: any = document.getElementById('pdf');
+
+    html2canvas(DATA).then(canvas => {
+
+      let fileWidth = 200;
+      let fileHeight = canvas.height * fileWidth / canvas.width;
+
+      const FILEURI = canvas.toDataURL('image/png')
+      let PDF = new jspdf('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+
+      PDF.save('angular-demo.pdf');
     });
   }
   izaberiFirmu(klijent: Klijent) {

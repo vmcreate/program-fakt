@@ -1,0 +1,116 @@
+<h2>Kompanija</h2>
+
+<form #f="ngForm" (ngSubmit)="updateKompaniju(f)" *ngIf="kompanija">
+
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Detalji</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Ime Firme</mat-label>
+                <input matInput type="text" name="firma" [(ngModel)]="kompanija.kompanija">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Ime</mat-label>
+                <input matInput type="text" name="ime" [(ngModel)]="kompanija.ime">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Prezime</mat-label>
+                <input matInput type="text" name="prezime" [(ngModel)]="kompanija.prezime">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Maticni broj</mat-label>
+                <input matInput type="text" name="maticni_broj" [(ngModel)]="kompanija.maticni_broj">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>PIB</mat-label>
+                <input matInput type="text" name="pib" [(ngModel)]="kompanija.pib">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Web adresa</mat-label>
+                <input matInput type="text" name="web_adresa" [(ngModel)]="kompanija.web_adresa">
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card class="kompanija-card">
+        <mat-card-header>
+            <mat-card-title>Kontakti</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Telefon</mat-label>
+                <input matInput type="tel" name="telefon" [(ngModel)]="kompanija.telefon">
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Adresa</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Ulica</mat-label>
+                <input matInput type="text" name="ulica" [(ngModel)]="kompanija.ulica">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Sprat/Soba</mat-label>
+                <input matInput type="text" name="sprat_soba" [(ngModel)]="kompanija.sprat_soba">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Grad</mat-label>
+                <input matInput type="text" name="grad" [(ngModel)]="kompanija.grad">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Okrug</mat-label>
+                <input matInput type="text" name="okrug" [(ngModel)]="kompanija.okrug">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Postanski broj</mat-label>
+                <input matInput type="text" name="ptp" [(ngModel)]="kompanija.ptp">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Zemlja</mat-label>
+                <input matInput type="text" name="zemlja" [(ngModel)]="kompanija.zemlja">
+            </mat-form-field>
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card class="klijent-card">
+        <mat-card-header>
+            <mat-card-title>Drugo</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Napomena</mat-label>
+                <textarea matInput [(ngModel)]="kompanija.napomena" name="napomena"> </textarea>
+            </mat-form-field>
+            <div class="imageContainer">
+                <img [src]="imageUrl" width="100px" height="100px">
+                <label class="btn">
+                    📸 Dodaj logo
+                    <input (change)="onImagePicked($event)" hidden type="file"
+                        accept="image/x-png,image/gif,image/jpeg" />
+                </label>
+            </div>
+
+
+        </mat-card-content>
+
+    </mat-card>
+    <div class="dugmad">
+        <button type="submit" class="main-btn" mat-raised-button>
+            <span class="material-icons">
+                save
+            </span>Sacuvaj
+        </button>
+        <button (click)="deleteKompanija()" type="button" class="main-btn" disabled mat-raised-button>
+            <span class="material-icons">
+                delete
+            </span>Obrisi
+        </button>
+    </div>
+</form>

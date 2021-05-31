@@ -12,6 +12,7 @@ import { PonudeComponent } from './ponude/ponude.component';
 import { RacunComponent } from './racun/racun.component';
 import { NovPredracunComponent } from './ponude/nov-predracun/nov-predracun.component';
 import { PonudaDetaljiComponent } from './ponude/ponuda-detalji/ponuda-detalji.component';
+import { PostavkeComponent } from './postavke/postavke.component';
 
 
 
@@ -22,6 +23,7 @@ const routes: Routes = [
         path: '', component: DashboardComponent, children: [
             { path: 'klijenti', component: KlijentiComponent },
             { path: 'proizvodi', component: ProizvodiComponent },
+            { path: 'postavke', component: PostavkeComponent },
             { path: 'klijenti/novi-klijent', component: NoviKlijentComponent },
             { path: 'klijenti/:id', component: ProfilComponent },
             { path: 'proizvodi/novi-proizvod', component: NoviProizvodComponent },

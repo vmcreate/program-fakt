@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
+import { Kompanija } from '../model/Kompanija';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class KompanijaService {
   getKompaniju() {
     return this.db.collection('profil').doc('kompanija').snapshotChanges().subscribe(async (res: any) => {
       const kompanija = await res.payload.data().kompanija;
-      console.log(kompanija)
       this.izabranaKompanija.next(kompanija);
     })
   }
@@ -49,4 +49,8 @@ export class KompanijaService {
   updatePredracun(id: any, predracun: any) {
     return this.db.collection('kompanija').doc(id).update({ predracun: predracun });
   }
+  updateKompaniju(adminId: any, data: any) {
+    return this.db.collection('kompanija').doc(adminId).update(data);
+  }
+
 }
