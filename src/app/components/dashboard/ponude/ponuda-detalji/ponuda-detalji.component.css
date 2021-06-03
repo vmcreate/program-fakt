@@ -52,10 +52,11 @@ justify-content: flex-end;
   }
   #pdf{
     width: 1004px;
-    height: 1400px;
+    height: 2000px;
     background-color: white;
     padding: 20px;
     margin: 0;
+    font-weight: 700 !important;
   }
   .kompanijaInfo,.klijentInfo{
     display: flex;
@@ -103,3 +104,5 @@ justify-content: flex-end;
     border-bottom: 1px solid black;
     line-height: 35px;
   }
+
+  canvas#viewport { border: 1px solid white; width: 250px; height: 250px;}

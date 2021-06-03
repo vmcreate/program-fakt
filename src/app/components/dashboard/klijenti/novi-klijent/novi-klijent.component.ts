@@ -32,6 +32,7 @@ export class NoviKlijentComponent implements OnInit, OnDestroy {
           .set({ ...data, password: null })
         this.db.collection('kompanija').doc(this.kompanija).collection('klijenti').doc(uid).set({ ...data, password: null });
         this.router.navigate(['/dashboard/', 'klijenti']);
+        this.kompanijaService.toast('Novi klijent dodat', 'OK')
         f.resetForm();
       })
 

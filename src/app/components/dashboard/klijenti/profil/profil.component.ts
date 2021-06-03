@@ -34,11 +34,16 @@ export class ProfilComponent implements OnInit, OnDestroy {
   }
   updateKlijenta(f: NgForm) {
     this.klijentService.updateKlijenta(this.klijent?.id, this.kompanijaId, f.value)
-      .then(() => this.router.navigate(['/dashboard/', 'klijenti']))
+      .then(() => this.router.navigate(['/dashboard/', 'klijenti'])).then(() => {
+        this.kompanijaService.toast('Izmene zavrsene', 'OK')
+      })
   }
 
   deleteKlijenta() {
-    this.klijentService.deleteKlijenta(this.klijent?.id, this.kompanijaId)
+    this.klijentService.deleteKlijenta(this.klijent?.id, this.kompanijaId).then(() => {
+      this.kompanijaService.toast('Klijent je uspesno obrisan', 'OK')
+    })
+
 
   }
   ngOnDestroy() {

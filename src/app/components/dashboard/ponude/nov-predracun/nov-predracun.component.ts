@@ -58,7 +58,6 @@ export class NovPredracunComponent implements OnInit {
       })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
-        console.log(this.kompanija)
         let predracun = Number(this.kompanija?.predracun) + 1;
 
         if (predracun < 10) {
@@ -140,6 +139,7 @@ export class NovPredracunComponent implements OnInit {
   }
   izaberiFirmu(klijent: Klijent) {
     this.izabranaFirma = klijent;
+    this.kompanijaService.toast('Klijent izabran', 'OK')
   }
   // KONTROLE DUGMAD
   nacrt() {
@@ -159,7 +159,9 @@ export class NovPredracunComponent implements OnInit {
     }
 
     this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
-      this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun))
+      this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun)),
+        this.kompanijaService.toast('Nacrt zapamcen', 'OK')
+
     })
   }
   zavrsi() {
@@ -178,7 +180,8 @@ export class NovPredracunComponent implements OnInit {
       godina: this.godina
     }
 
-    this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id)
+    this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id);
+    this.kompanijaService.toast('Predracun zapamcen', 'OK')
   }
   posalji() { }
 }

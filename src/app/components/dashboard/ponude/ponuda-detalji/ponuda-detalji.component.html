@@ -114,7 +114,11 @@
     <div class="kompanijaInfo">
         <div class="info">
             <div class="logo">
-                <img [src]="kompanija?.imageUrl" width="150px">
+                <!-- <div class="imgB" [style.background-image]="backgroundImg">
+
+                </div> -->
+                <canvas id="viewport"></canvas>
+                <!-- <img [src]="kompanija?.imageUrl" width="150px"> -->
             </div>
         </div>
         <div class="info" *ngIf="kompanija">

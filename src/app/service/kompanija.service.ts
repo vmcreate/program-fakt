@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Kompanija } from '../model/Kompanija';
 
@@ -9,7 +10,7 @@ import { Kompanija } from '../model/Kompanija';
 export class KompanijaService {
   izabranaKompanija = new Subject<string>();
   isAdmin = new Subject<boolean>();
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private snackBar: MatSnackBar) { }
   getIzabranuKompaniju() {
     return this.izabranaKompanija.asObservable();
   }
@@ -52,5 +53,10 @@ export class KompanijaService {
   updateKompaniju(adminId: any, data: any) {
     return this.db.collection('kompanija').doc(adminId).update(data);
   }
-
+  toast(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: ['my-snack-bar']
+    })
+  }
 }

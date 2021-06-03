@@ -45,7 +45,7 @@ export class ProizvodComponent implements OnInit, OnDestroy {
   }
   deleteProizvod() {
     this.proizvodService.deleteProizvod(this.proizvod?.id, this.kompanijaId)
-      .then(() => this.router.navigate(['/dashboard/', 'proizvodi']))
+      .then(() => { this.router.navigate(['/dashboard/', 'proizvodi']), this.kompanijaService.toast('Proizvod obrisan', 'OK') })
   }
 
   ngOnDestroy() {

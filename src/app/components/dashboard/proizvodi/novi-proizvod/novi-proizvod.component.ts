@@ -27,6 +27,7 @@ export class NoviProizvodComponent implements OnInit, OnDestroy {
     console.log(this.kompanija)
     this.proizvodService.dodajProizvod(this.kompanija, data).then(() => {
       this.router.navigate(['/dashboard/', 'proizvodi']);
+      this.kompanijaService.toast('Uspesno ste dodali proizvod', 'OK')
       f.resetForm();
     })
   }

@@ -17,7 +17,7 @@ export class PostavkeComponent implements OnInit, OnDestroy {
   routeUrl?: string;
   kompanija?: Kompanija
   kompanijaId?: string;
-  imageUrl?: string;
+  imageUrl?: any;
   constructor(private route: ActivatedRoute,
     private klijentService: KlijentService,
     private kompanijaService: KompanijaService,
@@ -50,16 +50,20 @@ export class PostavkeComponent implements OnInit, OnDestroy {
     console.log('brisanje...')
 
   }
-  onImagePicked(e: any) {
+  async onImagePicked(e: any) {
     const fileList: FileList = e.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
+
+
       this.storageService.upload(`/logo/${this.kompanija?.id}`, file)
         .then(data => {
           data.ref.getDownloadURL().then(imageUrl => {
             this.kompanijaService.updateKompaniju(this.kompanija?.id, { imageUrl: imageUrl })
             this.imageUrl = imageUrl;
+            this.kompanijaService.toast('Logo je otpremljen', 'OK')
           })
+
         });
     }
   }

@@ -12,6 +12,11 @@ declare var jsPDF: any;
 import html2canvas from 'html2canvas';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
+
+
+
 @Component({
   selector: 'app-ponuda-detalji',
   templateUrl: './ponuda-detalji.component.html',
@@ -40,12 +45,15 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   subKompanija?: Subscription;
   klijentPib: any;
   klijentMB: any;
+  backgroundImg?: any;
+
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
     private racunService: RacunService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) { }
 
 
@@ -93,7 +101,8 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
-        console.log(this.kompanija)
+        this.make_base(this.kompanija?.imageUrl);
+
       })
     })
   }
@@ -152,7 +161,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       const FILEURI = canvas.toDataURL('image/png')
       let PDF = new jspdf('p', 'mm', 'a4');
       let position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+      PDF.addImage(FILEURI, 3, 3, 208, 250)
 
       PDF.save('angular-demo.pdf');
     });
@@ -200,7 +209,21 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
     this.racunService.deletePredracun(this.kompanijaId, this.routeId, this.KlijentUid)
   }
 
+
+
+  make_base(url: any) {
+    var canvas: any = document.getElementById('viewport'),
+      context = canvas.getContext('2d');
+    let base_image = new Image();
+    base_image.src = url;
+    context.drawImage(base_image, 1, 1);
+  }
+
   ngOnDestroy() {
     this.subKompanija?.unsubscribe();
   }
 }
+function make_base() {
+  throw new Error('Function not implemented.');
+}
+
