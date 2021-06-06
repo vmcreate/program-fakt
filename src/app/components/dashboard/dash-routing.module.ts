@@ -13,6 +13,11 @@ import { RacunComponent } from './racun/racun.component';
 import { NovPredracunComponent } from './ponude/nov-predracun/nov-predracun.component';
 import { PonudaDetaljiComponent } from './ponude/ponuda-detalji/ponuda-detalji.component';
 import { PostavkeComponent } from './postavke/postavke.component';
+import { NovRacunComponent } from './racun/nov-racun/nov-racun.component';
+import { RacunDetaljiComponent } from './racun/racun-detalji/racun-detalji.component';
+import { PonavljajuciComponent } from './ponavljajuci/ponavljajuci.component';
+import { NoviPonvaljajuciRacunComponent } from './ponavljajuci/novi-ponvaljajuci-racun/novi-ponvaljajuci-racun.component';
+import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalji/ponavljajuci-detalji.component';
 
 
 
@@ -31,7 +36,13 @@ const routes: Routes = [
             { path: 'ponude', component: PonudeComponent },
             { path: 'ponude/nov-predracun', component: NovPredracunComponent },
             { path: 'ponude/:id', component: PonudaDetaljiComponent },
-            { path: 'racun', component: RacunComponent }
+            { path: 'racun', component: RacunComponent },
+            { path: 'racun/nov-racun', component: NovRacunComponent },
+            { path: 'racun/:id', component: RacunDetaljiComponent },
+            { path: 'ponavljajuci-racun', component: PonavljajuciComponent },
+            { path: 'ponavljajuci-racun/novi-ponavljajuci-racun', component: NoviPonvaljajuciRacunComponent },
+            { path: 'ponavljajuci-racun/:id', component: PonavljajuciDetaljiComponent },
+
         ]
     }
 

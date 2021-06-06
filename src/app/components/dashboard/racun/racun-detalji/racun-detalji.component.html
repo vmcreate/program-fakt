@@ -1,4 +1,4 @@
-<h2><a [routerLink]="['/dashboard/','ponude']">Ponude</a> / {{brojponude + '-' + godina}}</h2>
+<h2><a [routerLink]="['/dashboard/','racun']">Racuni</a> / {{brojracuna + '-' + godina}}</h2>
 
 <form class="racunHeader">
     <mat-card>
@@ -45,8 +45,8 @@
     <mat-card>
         <mat-card-content>
             <mat-form-field>
-                <mat-label>Predracun #</mat-label>
-                <input disabled matInput type="number" name="brojponude" [(ngModel)]="brojponude">
+                <mat-label>Racun #</mat-label>
+                <input disabled matInput type="number" name="brojracuna" [(ngModel)]="brojracuna">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Popust #</mat-label>
@@ -144,7 +144,7 @@
     <div class="klijentInfo">
         <div class="info">
             <ul>
-                <li>Broj ponude: {{brojponude + '-' + godina}}</li>
+                <li>Broj racuna: {{brojracuna + '-' + godina}}</li>
                 <li *ngIf="datumIzdavanja">Datum ponude: {{datumIzdavanja | date:'dd.MM.YYYY.' }}
                 </li>
             </ul>

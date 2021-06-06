@@ -1,17 +1,17 @@
+import { Klijent } from "./Klijent";
 import { Proizvod } from "./Proizvod";
 
-export interface Predracun {
-    brojponude?: string;
+export interface Pracun {
     brojracuna?: string;
     ime?: string;
-    datumIzdavanja?: number;
-    datumVazenja?: number;
+    pocetniDatum?: number;
+    zavrsniDatum?: number;
     status: string;
-    deposit?: number;
     mesto?: string;
     popust?: number;
     proizvodi?: Array<Proizvod>;
     ukupno?: number;
     godina?: Date;
     klijentUid?: string;
+    klijent?: Klijent
 }

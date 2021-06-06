@@ -6,14 +6,14 @@ import { ProizvodService } from 'src/app/service/proizvod.service';
 import { RacunService } from 'src/app/service/racun.service';
 
 @Component({
-  selector: 'app-racun',
-  templateUrl: './racun.component.html',
-  styleUrls: ['./racun.component.css']
+  selector: 'app-ponavljajuci',
+  templateUrl: './ponavljajuci.component.html',
+  styleUrls: ['./ponavljajuci.component.css']
 })
-export class RacunComponent implements OnInit {
-  racuni?: Array<Predracun> = [];
+export class PonavljajuciComponent implements OnInit {
+  pracuni?: Array<Predracun> = [];
   kompanijaId?: string;
-  displayedColumns: string[] = ['brojracuna', 'ime', 'datumI', 'datumV', 'iznos', 'status', 'detalji'];
+  displayedColumns: string[] = ['ime', 'datumI', 'datumV', 'iznos', 'status', 'detalji'];
 
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
@@ -25,10 +25,10 @@ export class RacunComponent implements OnInit {
     this.kompanijaService.getKompaniju();
     this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
       this.kompanijaId = kompanijaId;
-      this.racunService.getRacune(kompanijaId).subscribe(res => {
-        this.racuni = [];
+      this.racunService.getPonavljajuciRacune(kompanijaId).subscribe(res => {
+        this.pracuni = [];
         res.map((predracun: any) => {
-          this.racuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
+          this.pracuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
         })
 
       })
@@ -37,3 +37,4 @@ export class RacunComponent implements OnInit {
   }
 
 }
+

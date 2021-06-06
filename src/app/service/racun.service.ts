@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Pracun } from '../model/Pracun';
 import { Predracun } from '../model/Predracun';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Predracun } from '../model/Predracun';
 export class RacunService {
 
   constructor(private db: AngularFirestore, private router: Router) { }
-
+  //PROFAKTURA/PREDRACUN
   zapamtiNacrt(kompanijaId: any, data: Predracun, klijentId: any) {
     const key = this.makeid(15);
     return this.db.collection('kompanija').doc(kompanijaId).collection('predracun').doc(key).set(data).then(() => {
@@ -51,6 +52,67 @@ export class RacunService {
     }
     return result.join('');
   }
+  // FAKTURA*RACUN
+  zapamtiRacunNacrt(kompanijaId: any, data: Predracun, klijentId: any) {
+    const key = this.makeid(15);
+    return this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(key).set(data).then(() => {
+      this.db.collection('klijenti').doc(klijentId).collection('racun').doc(key).set(data)
+    })
+  }
+  updateRacunNacrt(kompanijaId: any, id: any, data: Predracun, klijentId: any) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(id).update(data).then(() => {
+      this.db.collection('klijenti').doc(klijentId).collection('racun').doc(id).update(data)
+    })
+  }
+  getRacune(kompanijaId: any) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('racun').snapshotChanges();
+  }
+  getRacun(kompanijaId: any, racunId: any) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(racunId).snapshotChanges();
 
+  }
+  async deleteRacun(kompanijaId: any, racunId: any, klijentId: any) {
+
+    try {
+      await this.db.collection('klijenti').doc(klijentId).collection('racun').doc(racunId).delete();
+      await this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(racunId).delete();
+      this.router.navigate(['/dashboard/', 'racun']);
+    }
+    catch (err) {
+      console.log(err)
+    }
+
+  }
+  // PONAVLJAJUCI RACUN
+  zapamtiPonavljajuciRacunNacrt(kompanijaId: any, data: Pracun, klijentId: any) {
+    const key = this.makeid(15);
+    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(key).set(data).then(() => {
+      this.db.collection('klijenti').doc(klijentId).collection('pracun').doc(key).set(data)
+    })
+  }
+  updatePonavljajuciRacunNacrt(kompanijaId: any, id: any, data: Pracun, klijentId: any) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(id).update(data).then(() => {
+      this.db.collection('klijenti').doc(klijentId).collection('pracun').doc(id).update(data)
+    })
+  }
+  getPonavljajuciRacune(kompanijaId: any) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').snapshotChanges();
+  }
+  getPonavljajuciRacun(kompanijaId: any, racunId: any) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(racunId).snapshotChanges();
+
+  }
+  async deletePonavljajuciRacun(kompanijaId: any, racunId: any, klijentId: any) {
+
+    try {
+      await this.db.collection('klijenti').doc(klijentId).collection('pracun').doc(racunId).delete();
+      await this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(racunId).delete();
+      this.router.navigate(['/dashboard/', 'pracun']);
+    }
+    catch (err) {
+      console.log(err)
+    }
+
+  }
 }
 

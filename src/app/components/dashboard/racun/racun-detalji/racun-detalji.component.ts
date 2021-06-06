@@ -15,21 +15,19 @@ import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
-
 @Component({
-  selector: 'app-ponuda-detalji',
-  templateUrl: './ponuda-detalji.component.html',
-  styleUrls: ['./ponuda-detalji.component.css']
+  selector: 'app-racun-detalji',
+  templateUrl: './racun-detalji.component.html',
+  styleUrls: ['./racun-detalji.component.css']
 })
-export class PonudaDetaljiComponent implements OnInit, OnDestroy {
+export class RacunDetaljiComponent implements OnInit, OnDestroy {
   klijent?: string;
   proizvodi?: Array<any> = [];
   kompanija?: Kompanija;
   izabraniProizvodi: Array<any> = [];
   kompanijaId?: string;
   popust: number = 0;
-  brojponude?: any;
+  brojracuna?: any;
   godina?: any;
   deposit: number = 0;
   ukupno: number = 0;
@@ -65,10 +63,10 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
     })
     this.subKompanija = this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
       this.kompanijaId = kompanijaId;
-      this.racunService.getPredracun(kompanijaId, this.routeId).subscribe((res: any) => {
+      this.racunService.getRacun(kompanijaId, this.routeId).subscribe((res: any) => {
 
-        const { brojponude, mesto, datumIzdavanja, pib, ulica, maticni_broj, datumVazenja, status, ime, proizvodi, deposit, popust, ukupno, godina, klijentUid }: any = res.payload.data();
-        this.brojponude = brojponude;
+        const { brojracuna, mesto, datumIzdavanja, pib, ulica, maticni_broj, datumVazenja, status, ime, proizvodi, deposit, popust, ukupno, godina, klijentUid }: any = res.payload.data();
+        this.brojracuna = brojracuna;
         this.mesto = mesto;
         this.datumIzdavanja = datumIzdavanja;
         this.datumVazenja = datumVazenja;
@@ -172,7 +170,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   // KONTROLE DUGMAD
   nacrt() {
     const data: Predracun = {
-      brojponude: this.brojponude,
+      brojracuna: this.brojracuna,
       ime: this.klijent,
       datumIzdavanja: this.datumIzdavanja?.valueOf(),
       datumVazenja: this.datumVazenja?.valueOf(),
@@ -185,7 +183,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       godina: this.godina
     }
 
-    this.racunService.updateNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
+    this.racunService.updateRacunNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
       .then(() => {
         this.kompanijaService.toast('Nacrt uspesno promenjen', 'OK')
 
@@ -193,7 +191,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   }
   zavrsi() {
     const data: Predracun = {
-      brojponude: this.brojponude,
+      brojracuna: this.brojracuna,
       ime: this.klijent,
       datumIzdavanja: this.datumIzdavanja?.valueOf(),
       datumVazenja: this.datumVazenja?.valueOf(),
@@ -206,7 +204,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       godina: this.godina
     }
 
-    this.racunService.updateNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
+    this.racunService.updateRacunNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
       .then(() => {
         this.kompanijaService.toast('Status uspesno promenjen', 'OK')
 
@@ -214,7 +212,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   }
   posalji() { }
   deleteP() {
-    this.racunService.deletePredracun(this.kompanijaId, this.routeId, this.KlijentUid)
+    this.racunService.deleteRacun(this.kompanijaId, this.routeId, this.KlijentUid)
       .then(() => {
         this.kompanijaService.toast('Predracun uspesno izbrisan, Klijent vise  nije u mogucnosti da ga vidi.', 'OK')
 

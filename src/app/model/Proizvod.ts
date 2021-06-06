@@ -5,4 +5,5 @@ export interface Proizvod {
     id?: string;
     kolicina?: number;
     ukupno?: number;
+    troskovi?: number;
 }

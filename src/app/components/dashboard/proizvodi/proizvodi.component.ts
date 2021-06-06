@@ -13,7 +13,7 @@ import { ProizvodService } from 'src/app/service/proizvod.service';
 export class ProizvodiComponent implements OnInit, OnDestroy {
   proizvodi?: Array<any> = [];
   fetchProizvode?: Array<Proizvod> = [];
-  displayedColumns: string[] = ['broj', 'ime', 'cena', 'napomena', 'detalji'];
+  displayedColumns: string[] = ['ime', 'cena', 'troskovi', 'napomena', 'detalji'];
   subKompanija?: Subscription;
   subKlijent?: Subscription;
 

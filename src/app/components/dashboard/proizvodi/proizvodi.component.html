@@ -9,10 +9,7 @@
 
 <table mat-table *ngIf="fetchProizvode" [dataSource]="fetchProizvode" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="broj">
-        <th mat-header-cell *matHeaderCellDef> Redni broj </th>
-        <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-    </ng-container>
+
 
     <!-- Name Column -->
     <ng-container matColumnDef="ime">
@@ -24,6 +21,11 @@
     <ng-container matColumnDef="napomena">
         <th mat-header-cell *matHeaderCellDef> Napomena </th>
         <td mat-cell *matCellDef="let element"> {{element.napomena}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="troskovi">
+        <th mat-header-cell *matHeaderCellDef> Troskovi </th>
+        <td mat-cell *matCellDef="let element"> {{element.troskovi}} </td>
     </ng-container>
     <!-- Weight Column -->
     <ng-container matColumnDef="cena">

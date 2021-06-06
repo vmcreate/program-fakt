@@ -50,6 +50,9 @@ export class KompanijaService {
   updatePredracun(id: any, predracun: any) {
     return this.db.collection('kompanija').doc(id).update({ predracun: predracun });
   }
+  updateRacun(id: any, racun: any) {
+    return this.db.collection('kompanija').doc(id).update({ racun: racun });
+  }
   updateKompaniju(adminId: any, data: any) {
     return this.db.collection('kompanija').doc(adminId).update(data);
   }

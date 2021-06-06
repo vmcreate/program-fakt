@@ -9,8 +9,10 @@
 --dodavanje klijenta x
 --dodavanje proizvoda x 
 --klijent da ima svoj profil / kad dodajemo klijenta da ga i registrujemo, email,password. x
---dodavanje predracuna
---dodavanje racuna
+--dodavanje predracuna x
+--dodavanje racuna x
+--dodavanje troskova u proizvode
+--Zakazane funkcije treba menjati brojracuna,datum izdavanja i vazenja i upisivate nove racune
 
 
 
@@ -33,4 +35,5 @@ kompanija/:id/
                                 /produkti/:id/podaci o produktu
                                 /racuni/:id/racuni
                                 /predracuni/:id/predracuni
+                                /ponavljajuci-racun/:id/ponavljajuci-racun  00 08 1 1/1 *
 --------------                                

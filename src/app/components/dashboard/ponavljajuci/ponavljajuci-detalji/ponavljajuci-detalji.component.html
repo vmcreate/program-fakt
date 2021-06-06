@@ -1,4 +1,4 @@
-<h2><a [routerLink]="['/dashboard/','ponude']">Ponude</a> / {{brojponude + '-' + godina}}</h2>
+<h2><a [routerLink]="['/dashboard/','ponavljajuci-racun']">Ponavljajuci racun</a></h2>
 
 <form class="racunHeader">
     <mat-card>
@@ -29,14 +29,11 @@
                 <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
             <span *ngIf="datumVazenja">Datum vazenja: {{datumVazenja | date:'dd.MM.YYYY.' }}</span>
-            <mat-form-field>
-                <mat-label>Deposit</mat-label>
-                <input matInput type="number" (change)="depositEv()" name="deposit" [(ngModel)]="deposit">
+            <mat-form-field appearance="fill">
+                <mat-label>Datum dospeća</mat-label>
+                <input disabled matInput value="Prvog u mesecu">
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Mesto izdavanja</mat-label>
-                <input matInput type="text" name="mesto" [(ngModel)]="mesto">
-            </mat-form-field>
+
 
 
         </mat-card-content>
@@ -45,8 +42,12 @@
     <mat-card>
         <mat-card-content>
             <mat-form-field>
-                <mat-label>Predracun #</mat-label>
-                <input disabled matInput type="number" name="brojponude" [(ngModel)]="brojponude">
+                <mat-label>Mesto izdavanja</mat-label>
+                <input matInput type="text" name="mesto" [(ngModel)]="mesto">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Racun #</mat-label>
+                <input disabled matInput type="text" value="Bice dodeljeno...">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Popust #</mat-label>
@@ -144,7 +145,7 @@
     <div class="klijentInfo">
         <div class="info">
             <ul>
-                <li>Broj ponude: {{brojponude + '-' + godina}}</li>
+                <li>Broj racuna:</li>
                 <li *ngIf="datumIzdavanja">Datum ponude: {{datumIzdavanja | date:'dd.MM.YYYY.' }}
                 </li>
             </ul>

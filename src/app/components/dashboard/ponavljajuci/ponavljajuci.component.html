@@ -1,18 +1,13 @@
-<h2>Ponude</h2>
+<h2>Ponavljajuci racuni</h2>
 <div class="headerBtn">
-    <button routerLink="nov-predracun" class="main-btn" mat-raised-button color="accent">
+    <button routerLink="novi-ponavljajuci-racun" class="main-btn" mat-raised-button color="accent">
         <span class="material-icons">
             post_add
-        </span> Novi predracun
+        </span> Novi ponavljajuci racun
     </button>
 </div>
 
-<table mat-table *ngIf="predracuni" [dataSource]="predracuni" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="brojpredracuna">
-        <th mat-header-cell *matHeaderCellDef> Broj predracuna </th>
-        <td mat-cell *matCellDef="let element;"> {{element.brojponude + '-' + element.godina}} </td>
-    </ng-container>
+<table mat-table *ngIf="pracuni" [dataSource]="pracuni" class="mat-elevation-z8">
 
     <!-- Name Column -->
     <ng-container matColumnDef="ime">
@@ -22,14 +17,14 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="datumI">
-        <th mat-header-cell *matHeaderCellDef> Datum izdavanja </th>
-        <td mat-cell *matCellDef="let element"> {{element.datumIzdavanja | date:'dd.MM.YYYY'}}
+        <th mat-header-cell *matHeaderCellDef> Početni datum </th>
+        <td mat-cell *matCellDef="let element"> {{element.pocetniDatum | date:'dd.MM.YYYY'}}
         </td>
     </ng-container>
 
     <ng-container matColumnDef="datumV">
-        <th mat-header-cell *matHeaderCellDef> Datum vazenja </th>
-        <td mat-cell *matCellDef="let element"> {{element.datumVazenja | date:'dd.MM.YYYY'}} </td>
+        <th mat-header-cell *matHeaderCellDef> Završni datum </th>
+        <td mat-cell *matCellDef="let element"> {{element.zavrsniDatum | date:'dd.MM.YYYY'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="iznos">

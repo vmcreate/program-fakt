@@ -1,30 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Klijent } from 'src/app/model/Klijent';
+import { Kompanija } from 'src/app/model/Kompanija';
 import { Proizvod } from 'src/app/model/Proizvod';
 import { KlijentService } from 'src/app/service/klijent.service';
 import { KompanijaService } from 'src/app/service/kompanija.service';
 import { ProizvodService } from 'src/app/service/proizvod.service';
-import { Kompanija } from '../../../../model/Kompanija';
+import { RacunService } from 'src/app/service/racun.service';
+
+
 import jspdf from 'jspdf';
 declare var jsPDF: any;
 
 import html2canvas from 'html2canvas';
-import { RacunService } from 'src/app/service/racun.service';
 import { Predracun } from 'src/app/model/Predracun';
-
 @Component({
-  selector: 'app-nov-predracun',
-  templateUrl: './nov-predracun.component.html',
-  styleUrls: ['./nov-predracun.component.css']
+  selector: 'app-nov-racun',
+  templateUrl: './nov-racun.component.html',
+  styleUrls: ['./nov-racun.component.css']
 })
-export class NovPredracunComponent implements OnInit {
+export class NovRacunComponent implements OnInit {
   klijenti?: Array<Klijent> = [];
   proizvodi?: Array<Proizvod> = [];
   kompanija?: Kompanija;
   izabraniProizvodi: Array<any> = [];
   kompanijaId?: string;
   popust: number = 0;
-  predracun?: any;
+  racun?: any;
   godina?: any = new Date().getFullYear();
   deposit: number = 0;
   ukupno: number = 0;
@@ -58,19 +59,19 @@ export class NovPredracunComponent implements OnInit {
       })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
-        let predracun = Number(this.kompanija?.predracun) + 1;
+        let racun = Number(this.kompanija?.racun) + 1;
 
-        if (predracun < 10) {
-          return (this.predracun = '000' + predracun.toString());
+        if (racun < 10) {
+          return (this.racun = '000' + racun.toString());
         }
-        else if (predracun < 100) {
-          return (this.predracun = '00' + predracun.toString());
+        else if (racun < 100) {
+          return (this.racun = '00' + racun.toString());
         }
-        else if (predracun < 1000) {
-          return (this.predracun = '0' + predracun.toString());
+        else if (racun < 1000) {
+          return (this.racun = '0' + racun.toString());
         }
         else {
-          return (this.predracun = predracun);
+          return (this.racun = racun);
         }
 
       })
@@ -144,7 +145,7 @@ export class NovPredracunComponent implements OnInit {
   // KONTROLE DUGMAD
   nacrt() {
     const data: Predracun = {
-      brojponude: this.predracun,
+      brojracuna: this.racun,
       ime: this.izabranaFirma?.firma,
       klijentUid: this.izabranaFirma?.id,
       datumIzdavanja: this.datumIzdavanja?.valueOf(),
@@ -158,15 +159,15 @@ export class NovPredracunComponent implements OnInit {
       godina: this.godina
     }
 
-    this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
-      this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun)),
+    this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
+      this.kompanijaService.updateRacun(this.kompanijaId, Number(this.racun)),
         this.kompanijaService.toast('Nacrt zapamcen', 'OK')
 
     })
   }
   zavrsi() {
     const data: Predracun = {
-      brojponude: this.predracun,
+      brojracuna: this.racun,
       ime: this.izabranaFirma?.firma,
       klijentUid: this.izabranaFirma?.id,
       datumIzdavanja: this.datumIzdavanja?.valueOf(),
@@ -180,10 +181,11 @@ export class NovPredracunComponent implements OnInit {
       godina: this.godina
     }
 
-    this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id);
-    this.kompanijaService.toast('Predracun zapamcen', 'OK')
+    this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id);
+    this.kompanijaService.toast('Racun zapamcen', 'OK')
   }
   posalji() {
     //na mail
   }
 }
+
