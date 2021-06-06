@@ -18,6 +18,7 @@ import { RacunDetaljiComponent } from './racun/racun-detalji/racun-detalji.compo
 import { PonavljajuciComponent } from './ponavljajuci/ponavljajuci.component';
 import { NoviPonvaljajuciRacunComponent } from './ponavljajuci/novi-ponvaljajuci-racun/novi-ponvaljajuci-racun.component';
 import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalji/ponavljajuci-detalji.component';
+import { StatistikaComponent } from './statistika/statistika.component';
 
 
 
@@ -26,6 +27,7 @@ import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalj
 const routes: Routes = [
     {
         path: '', component: DashboardComponent, children: [
+            { path: '', component: StatistikaComponent },
             { path: 'klijenti', component: KlijentiComponent },
             { path: 'proizvodi', component: ProizvodiComponent },
             { path: 'postavke', component: PostavkeComponent },

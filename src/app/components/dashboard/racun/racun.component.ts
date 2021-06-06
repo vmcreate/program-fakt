@@ -13,7 +13,7 @@ import { RacunService } from 'src/app/service/racun.service';
 export class RacunComponent implements OnInit {
   racuni?: Array<Predracun> = [];
   kompanijaId?: string;
-  displayedColumns: string[] = ['brojracuna', 'ime', 'datumI', 'datumV', 'iznos', 'status', 'detalji'];
+  displayedColumns: string[] = ['brojracuna', 'ime', 'datumI', 'datumV', 'iznos', 'status', 'placeno', 'detalji'];
 
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
@@ -35,5 +35,8 @@ export class RacunComponent implements OnInit {
     })
 
   }
-
+  placenoToggle(el: any) {
+    const placeno = !el.placeno;
+    this.racunService.updateRacunNacrt(this.kompanijaId, el.id, { placeno: placeno }, el.klijentUid)
+  }
 }

@@ -43,7 +43,13 @@
                 mat-button>{{element.status.toUpperCase()}}</button>
         </td>
     </ng-container>
-
+    <ng-container matColumnDef="placeno">
+        <th mat-header-cell *matHeaderCellDef> Placeno </th>
+        <td mat-cell *matCellDef="let element">
+            <button color="warn" (click)="placenoToggle(element)" mat-button>{{element.placeno === true?
+                'DA':'NE'}}</button>
+        </td>
+    </ng-container>
     <ng-container matColumnDef="detalji">
         <th mat-header-cell *matHeaderCellDef> Detalji </th>
         <td mat-cell *matCellDef="let element"> <a [routerLink]="[element.id]">Detalji</a> </td>

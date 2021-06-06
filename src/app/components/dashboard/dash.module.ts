@@ -21,6 +21,7 @@ import { RacunDetaljiComponent } from './racun/racun-detalji/racun-detalji.compo
 import { PonavljajuciComponent } from './ponavljajuci/ponavljajuci.component';
 import { NoviPonvaljajuciRacunComponent } from './ponavljajuci/novi-ponvaljajuci-racun/novi-ponvaljajuci-racun.component';
 import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalji/ponavljajuci-detalji.component';
+import { StatistikaComponent } from './statistika/statistika.component';
 
 
 
@@ -30,7 +31,7 @@ import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalj
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent
+    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent, StatistikaComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule

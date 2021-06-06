@@ -14,4 +14,5 @@ export interface Predracun {
     ukupno?: number;
     godina?: Date;
     klijentUid?: string;
+    placeno?: boolean;
 }

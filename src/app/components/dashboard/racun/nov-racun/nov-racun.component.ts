@@ -13,6 +13,7 @@ declare var jsPDF: any;
 
 import html2canvas from 'html2canvas';
 import { Predracun } from 'src/app/model/Predracun';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nov-racun',
   templateUrl: './nov-racun.component.html',
@@ -37,7 +38,8 @@ export class NovRacunComponent implements OnInit {
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
-    private racunService: RacunService
+    private racunService: RacunService,
+    private router: Router
   ) { }
 
 
@@ -78,7 +80,7 @@ export class NovRacunComponent implements OnInit {
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
   }
@@ -156,14 +158,15 @@ export class NovRacunComponent implements OnInit {
       proizvodi: this.izabraniProizvodi,
       status: 'nacrt',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      placeno: false
     }
 
     this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
       this.kompanijaService.updateRacun(this.kompanijaId, Number(this.racun)),
         this.kompanijaService.toast('Nacrt zapamcen', 'OK')
 
-    })
+    }).then(() => this.router.navigateByUrl('/dashboard/racun'))
   }
   zavrsi() {
     const data: Predracun = {
@@ -178,11 +181,16 @@ export class NovRacunComponent implements OnInit {
       proizvodi: this.izabraniProizvodi,
       status: 'zavrseno',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      placeno: false
     }
 
-    this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id);
-    this.kompanijaService.toast('Racun zapamcen', 'OK')
+    this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
+      this.kompanijaService.updateRacun(this.kompanijaId, Number(this.racun)),
+        this.kompanijaService.toast('Nacrt zapamcen', 'OK')
+
+    }).then(() => this.router.navigateByUrl('/dashboard/racun'))
+
   }
   posalji() {
     //na mail

@@ -59,7 +59,7 @@ export class RacunService {
       this.db.collection('klijenti').doc(klijentId).collection('racun').doc(key).set(data)
     })
   }
-  updateRacunNacrt(kompanijaId: any, id: any, data: Predracun, klijentId: any) {
+  updateRacunNacrt(kompanijaId: any, id: any, data: any, klijentId: any) {
     return this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(id).update(data).then(() => {
       this.db.collection('klijenti').doc(klijentId).collection('racun').doc(id).update(data)
     })
