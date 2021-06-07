@@ -13,5 +13,8 @@ export interface Pracun {
     ukupno?: number;
     godina?: Date;
     klijentUid?: string;
+    kompanijaUid?: string;
     klijent?: Klijent
+    deposit?: number;
+    placeno?: boolean;
 }

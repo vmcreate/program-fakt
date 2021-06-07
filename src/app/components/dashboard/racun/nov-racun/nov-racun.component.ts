@@ -159,7 +159,9 @@ export class NovRacunComponent implements OnInit {
       status: 'nacrt',
       mesto: this.mesto,
       godina: this.godina,
-      placeno: false
+      placeno: false,
+      kompanijaUid: this.kompanijaId
+
     }
 
     this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
@@ -182,7 +184,8 @@ export class NovRacunComponent implements OnInit {
       status: 'zavrseno',
       mesto: this.mesto,
       godina: this.godina,
-      placeno: false
+      placeno: false,
+      kompanijaUid: this.kompanijaId
     }
 
     this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {

@@ -52,7 +52,7 @@ export class StatistikaComponent implements OnInit {
         this.ukupniTrosak = this.racuni.reduce((a, b) => a + b.troskovi, 0);
         this.nenaplaceno = this.neNaplceni.reduce((a, b) => a + b.ukupno, 0);
         this.ukupniPrihod = this.naplaceniProizvod.reduce((a, b) => a + b.ukupno, 0) - Number(this.ukupniTrosak);
-        console.log(this.nenaplaceno, this.ukupniTrosak, this.ukupniPrihod)
+        console.log('Nenaplaceno:', this.nenaplaceno, 'Ukupni trosak:', this.ukupniTrosak, 'Ukupni prihod:', this.ukupniPrihod)
 
       })
     })

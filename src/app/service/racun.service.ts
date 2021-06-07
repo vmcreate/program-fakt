@@ -84,16 +84,12 @@ export class RacunService {
 
   }
   // PONAVLJAJUCI RACUN
-  zapamtiPonavljajuciRacunNacrt(kompanijaId: any, data: Pracun, klijentId: any) {
+  zapamtiPonavljajuciRacunNacrt(kompanijaId: any, data: Pracun) {
     const key = this.makeid(15);
-    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(key).set(data).then(() => {
-      this.db.collection('klijenti').doc(klijentId).collection('pracun').doc(key).set(data)
-    })
+    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(key).set(data)
   }
-  updatePonavljajuciRacunNacrt(kompanijaId: any, id: any, data: Pracun, klijentId: any) {
-    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(id).update(data).then(() => {
-      this.db.collection('klijenti').doc(klijentId).collection('pracun').doc(id).update(data)
-    })
+  updatePonavljajuciRacunNacrt(kompanijaId: any, id: any, data: Pracun) {
+    return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(id).update(data)
   }
   getPonavljajuciRacune(kompanijaId: any) {
     return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').snapshotChanges();
@@ -102,10 +98,9 @@ export class RacunService {
     return this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(racunId).snapshotChanges();
 
   }
-  async deletePonavljajuciRacun(kompanijaId: any, racunId: any, klijentId: any) {
+  async deletePonavljajuciRacun(kompanijaId: any, racunId: any) {
 
     try {
-      await this.db.collection('klijenti').doc(klijentId).collection('pracun').doc(racunId).delete();
       await this.db.collection('kompanija').doc(kompanijaId).collection('pracun').doc(racunId).delete();
       this.router.navigate(['/dashboard/', 'pracun']);
     }

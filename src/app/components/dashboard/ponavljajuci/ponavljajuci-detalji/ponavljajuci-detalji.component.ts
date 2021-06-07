@@ -105,7 +105,7 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
     this.sveUkupno = this.ukupno - this.popust;
   }
@@ -176,13 +176,16 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
       popust: this.popust,
       ukupno: this.sveUkupno,
       proizvodi: this.izabraniProizvodi,
-      status: 'zavrseno',
+      status: 'nacrt',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      kompanijaUid: this.kompanijaId,
+      deposit: 0,
+      placeno: false
 
     }
 
-    this.racunService.updatePonavljajuciRacunNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
+    this.racunService.updatePonavljajuciRacunNacrt(this.kompanijaId, this.routeId, data)
       .then(() => {
         this.kompanijaService.toast('Nacrt uspesno promenjen', 'OK')
 
@@ -198,11 +201,14 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
       proizvodi: this.izabraniProizvodi,
       status: 'zavrseno',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      kompanijaUid: this.kompanijaId,
+      deposit: 0,
+      placeno: false
 
     }
 
-    this.racunService.updatePonavljajuciRacunNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
+    this.racunService.updatePonavljajuciRacunNacrt(this.kompanijaId, this.routeId, data)
       .then(() => {
         this.kompanijaService.toast('Status uspesno promenjen', 'OK')
 
@@ -210,7 +216,7 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
   }
   posalji() { }
   deleteP() {
-    this.racunService.deletePonavljajuciRacun(this.kompanijaId, this.routeId, this.KlijentUid)
+    this.racunService.deletePonavljajuciRacun(this.kompanijaId, this.routeId)
       .then(() => {
         this.kompanijaService.toast('Predracun uspesno izbrisan, Klijent vise  nije u mogucnosti da ga vidi.', 'OK')
 

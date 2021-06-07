@@ -79,7 +79,7 @@ export class NoviPonvaljajuciRacunComponent implements OnInit {
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
   }
@@ -156,10 +156,14 @@ export class NoviPonvaljajuciRacunComponent implements OnInit {
       status: 'nacrt',
       mesto: this.mesto,
       godina: this.godina,
-      klijent: this.izabranaFirma
+      klijent: this.izabranaFirma,
+      kompanijaUid: this.kompanijaId,
+      deposit: 0,
+      placeno: false
+
     }
 
-    this.racunService.zapamtiPonavljajuciRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
+    this.racunService.zapamtiPonavljajuciRacunNacrt(this.kompanijaId, data).then(() => {
       this.kompanijaService.toast('Nacrt zapamcen', 'OK')
 
     })
@@ -176,11 +180,14 @@ export class NoviPonvaljajuciRacunComponent implements OnInit {
       status: 'zavrseno',
       mesto: this.mesto,
       godina: this.godina,
-      klijent: this.izabranaFirma
+      klijent: this.izabranaFirma,
+      kompanijaUid: this.kompanijaId,
+      deposit: 0,
+      placeno: false
 
     }
 
-    this.racunService.zapamtiPonavljajuciRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id);
+    this.racunService.zapamtiPonavljajuciRacunNacrt(this.kompanijaId, data);
     this.kompanijaService.toast('Racun zapamcen', 'OK')
   }
   posalji() {
