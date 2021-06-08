@@ -46,6 +46,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   klijentPib: any;
   klijentMB: any;
   backgroundImg?: any;
+  racun: any;
 
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
@@ -102,12 +103,26 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
         this.make_base(this.kompanija?.imageUrl);
+        let racun = Number(this.kompanija?.racun) + 1;
+
+        if (racun < 10) {
+          return (this.racun = '000' + racun.toString());
+        }
+        else if (racun < 100) {
+          return (this.racun = '00' + racun.toString());
+        }
+        else if (racun < 1000) {
+          return (this.racun = '0' + racun.toString());
+        }
+        else {
+          return (this.racun = racun);
+        }
 
       })
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
   }
@@ -220,7 +235,30 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
 
       })
   }
+  uFakturu() {
+    const data: Predracun = {
+      brojracuna: this.racun,
+      ime: this.klijent,
+      klijentUid: this.KlijentUid,
+      datumIzdavanja: this.datumIzdavanja?.valueOf(),
+      datumVazenja: this.datumVazenja?.valueOf(),
+      deposit: this.deposit,
+      popust: this.popust,
+      ukupno: this.sveUkupno,
+      proizvodi: this.izabraniProizvodi,
+      status: 'zavrseno',
+      mesto: this.mesto,
+      godina: this.godina,
+      placeno: false,
+      kompanijaUid: this.kompanijaId
+    }
 
+    this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.KlijentUid).then(() => {
+      this.kompanijaService.updateRacun(this.kompanijaId, Number(this.racun)),
+        this.kompanijaService.toast(`PROFAKTURA JE PREBACENA U FAKTURU REDNI BROJ RACUNA ${this.racun}`, 'OK')
+
+    }).then(() => this.router.navigateByUrl('/dashboard/racun'))
+  }
 
 
   make_base(url: any) {
