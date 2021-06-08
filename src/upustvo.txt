@@ -11,8 +11,10 @@
 --klijent da ima svoj profil / kad dodajemo klijenta da ga i registrujemo, email,password. x
 --dodavanje predracuna x
 --dodavanje racuna x
---dodavanje troskova u proizvode
---Zakazane funkcije treba menjati brojracuna,datum izdavanja i vazenja i upisivate nove racune
+--dodavanje troskova u proizvode x
+--Zakazane funkcije treba menjati brojracuna,datum izdavanja i vazenja i upisivate nove racune x
+--dodavanje filtera i sortiranja na tabele *
+--statistika klijenta/statistika usluga VELIK POSAO!
 
 
 

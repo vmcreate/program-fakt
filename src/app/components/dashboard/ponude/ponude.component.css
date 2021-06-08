@@ -18,6 +18,13 @@ table {
   a{
     color: white;
   }
+  tr{
+    height: 30px !important;
+  }
+  td{
+    font-size: 12px;
+    padding: 4px !important;
+  }
   td button{
       padding-left: 0 !important;
   }

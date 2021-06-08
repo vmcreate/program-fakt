@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Klijent } from 'src/app/model/Klijent';
 import { Predracun } from 'src/app/model/Predracun';
 import { KlijentService } from 'src/app/service/klijent.service';
@@ -13,6 +15,7 @@ import { RacunService } from 'src/app/service/racun.service';
 })
 export class PonudeComponent implements OnInit {
   predracuni?: Array<Predracun> = [];
+  dataSource?: any;
   kompanijaId?: string;
   displayedColumns: string[] = ['brojpredracuna', 'ime', 'datumI', 'datumV', 'iznos', 'status', 'detalji'];
 
@@ -21,6 +24,7 @@ export class PonudeComponent implements OnInit {
     private kompanijaService: KompanijaService,
     private racunService: RacunService
   ) { }
+  @ViewChild(MatSort) sort?: MatSort;
 
   ngOnInit() {
     this.kompanijaService.getKompaniju();
@@ -30,11 +34,33 @@ export class PonudeComponent implements OnInit {
         this.predracuni = [];
         res.map((predracun: any) => {
           this.predracuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
+          this.dataSource = new MatTableDataSource();
+          this.dataSource.data = this.predracuni;
+          this.dataSource.sort = this.sort;
         })
+        this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+          switch (property) {
+            case 'iznos': return item.ukupno;
+            case 'datumI': {
 
+              let newDate = new Date(item.datumIzdavanja).valueOf();
+              return newDate;
+            }
+            case 'datumV': {
+              let newDate = new Date(item.datumVazenja).valueOf();
+              return newDate;
+            }
+            default: return item[property];
+          }
+        };
       })
     })
 
   }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
+    console.log(filterValue.lastIndexOf);
+  }
 }

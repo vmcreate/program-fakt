@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NgForm } from '@angular/forms';
@@ -14,7 +15,12 @@ import { KompanijaService } from 'src/app/service/kompanija.service';
 export class NoviKlijentComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   kompanija?: string;
-  constructor(private klijentService: KlijentService, private router: Router, private kompanijaService: KompanijaService, private db: AngularFirestore) {
+  constructor(private klijentService: KlijentService,
+    private router: Router,
+    private kompanijaService: KompanijaService,
+    private db: AngularFirestore,
+    private location: Location
+  ) {
     this.subscription = this.kompanijaService.getIzabranuKompaniju().subscribe(res => this.kompanija = res)
   }
 
@@ -31,7 +37,7 @@ export class NoviKlijentComponent implements OnInit, OnDestroy {
           .doc(uid)
           .set({ ...data, password: null })
         this.db.collection('kompanija').doc(this.kompanija).collection('klijenti').doc(uid).set({ ...data, password: null });
-        this.router.navigate(['/dashboard/', 'klijenti']);
+        this.location.back();
         this.kompanijaService.toast('Novi klijent dodat', 'OK')
         f.resetForm();
       })
