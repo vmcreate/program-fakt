@@ -1,0 +1,40 @@
+<h2>Statistika Klijenta</h2>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ime Firme" #input>
+</mat-form-field>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div *ngIf="!isLoading">
+
+
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="broj">
+            <th mat-header-cell *matHeaderCellDef> Redni broj </th>
+            <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="ime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Firma </th>
+            <td mat-cell *matCellDef="let element"> {{element.firma}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="pib">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Zarada </th>
+            <td mat-cell *matCellDef="let element">
+                <zarada [id]="element.id" [kompanija]="kompanijaId"></zarada>
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="detalji">
+            <th mat-header-cell *matHeaderCellDef> Detalji </th>
+            <td mat-cell *matCellDef="let element"> <a [routerLink]="[element.id]">Informacije</a> </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

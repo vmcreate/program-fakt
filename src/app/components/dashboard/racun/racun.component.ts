@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Predracun } from 'src/app/model/Predracun';
@@ -17,6 +19,7 @@ export class RacunComponent implements OnInit {
   racuni?: Array<Predracun>;
   kompanijaId?: string;
   displayedColumns: string[] = ['brojracuna', 'ime', 'datumI', 'datumV', 'iznos', 'status', 'placeno', 'detalji'];
+  isLoading?: boolean;
 
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
@@ -32,9 +35,11 @@ export class RacunComponent implements OnInit {
   ngOnInit() {
     console.log('ispalio2')
     this.kompanijaService.getKompaniju();
+    this.isLoading = true;
     this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
       this.kompanijaId = kompanijaId;
       this.racunService.getRacune(kompanijaId).subscribe(res => {
+        this.isLoading = false;
         this.racuni = [];
         res.map((predracun: any) => {
           this.racuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })

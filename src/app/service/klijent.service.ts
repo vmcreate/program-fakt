@@ -35,4 +35,7 @@ export class KlijentService {
   async deleteKlijenta(klijentId: any, adminId: any) {
     this.db.collection('kompanija').doc(adminId).collection('klijenti').doc(klijentId).delete();
   }
+  getKlijentRacun(klijentId: any) {
+    return this.db.collection('klijenti').doc(klijentId).collection('racun').snapshotChanges();
+  }
 }

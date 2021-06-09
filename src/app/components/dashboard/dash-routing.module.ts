@@ -19,6 +19,7 @@ import { PonavljajuciComponent } from './ponavljajuci/ponavljajuci.component';
 import { NoviPonvaljajuciRacunComponent } from './ponavljajuci/novi-ponvaljajuci-racun/novi-ponvaljajuci-racun.component';
 import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalji/ponavljajuci-detalji.component';
 import { StatistikaComponent } from './statistika/statistika.component';
+import { StatistikaKlijentiComponent } from './statistika-klijenti/statistika-klijenti.component';
 
 
 
@@ -44,6 +45,8 @@ const routes: Routes = [
             { path: 'ponavljajuci-racun', component: PonavljajuciComponent },
             { path: 'ponavljajuci-racun/novi-ponavljajuci-racun', component: NoviPonvaljajuciRacunComponent },
             { path: 'ponavljajuci-racun/:id', component: PonavljajuciDetaljiComponent },
+            { path: 'statistika-klijenti', component: StatistikaKlijentiComponent },
+
 
         ]
     }

@@ -12,6 +12,7 @@ export class KompanijaService {
   isAdmin = new Subject<boolean>();
   constructor(private db: AngularFirestore, private snackBar: MatSnackBar) { }
   getIzabranuKompaniju() {
+
     return this.izabranaKompanija.asObservable();
   }
   getIsAdmin() {

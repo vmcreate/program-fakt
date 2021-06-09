@@ -23,6 +23,8 @@ import { NoviPonvaljajuciRacunComponent } from './ponavljajuci/novi-ponvaljajuci
 import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalji/ponavljajuci-detalji.component';
 import { StatistikaComponent } from './statistika/statistika.component';
 import { SharedModule } from 'src/app/modul/shared';
+import { StatistikaKlijentiComponent } from './statistika-klijenti/statistika-klijenti.component';
+import { ZaradaComponent } from './statistika-klijenti/zarada/zarada.component';
 
 
 
@@ -32,7 +34,7 @@ import { SharedModule } from 'src/app/modul/shared';
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent, StatistikaComponent
+    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent, StatistikaComponent, StatistikaKlijentiComponent, ZaradaComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule,

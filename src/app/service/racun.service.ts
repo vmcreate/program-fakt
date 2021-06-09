@@ -59,10 +59,10 @@ export class RacunService {
       this.db.collection('klijenti').doc(klijentId).collection('racun').doc(key).set(data)
     })
   }
-  updateRacunNacrt(kompanijaId: any, id: any, data: any, klijentId: any) {
-    return this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(id).update(data).then(() => {
-      this.db.collection('klijenti').doc(klijentId).collection('racun').doc(id).update(data)
-    })
+  async updateRacunNacrt(kompanijaId: any, id: any, data: any, klijentId: any) {
+    await this.db.collection('kompanija').doc(kompanijaId).collection('racun').doc(id).update(data);
+    this.db.collection('klijenti').doc(klijentId).collection('racun').doc(id).update(data);
+
   }
   getRacune(kompanijaId: any) {
     return this.db.collection('kompanija').doc(kompanijaId).collection('racun').snapshotChanges();
