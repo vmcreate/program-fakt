@@ -15,9 +15,8 @@ export class ZaradaComponent implements OnInit {
 
   ngOnInit(): void {
     this.klijentService.getKlijentRacun(this.id).subscribe(res => {
-      console.log(this.id)
       this.ukupnoArr = [];
-      this.ukupno = null;
+      this.ukupno = 0;
       res.map(klijent => {
         const k = klijent.payload.doc.data();
         if (k.placeno === true && k.status === 'zavrseno' && this.kompanijaId === k.kompanijaUid) {

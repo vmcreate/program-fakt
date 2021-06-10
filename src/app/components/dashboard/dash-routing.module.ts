@@ -20,6 +20,8 @@ import { NoviPonvaljajuciRacunComponent } from './ponavljajuci/novi-ponvaljajuci
 import { PonavljajuciDetaljiComponent } from './ponavljajuci/ponavljajuci-detalji/ponavljajuci-detalji.component';
 import { StatistikaComponent } from './statistika/statistika.component';
 import { StatistikaKlijentiComponent } from './statistika-klijenti/statistika-klijenti.component';
+import { DomenComponent } from './domen/domen.component';
+import { InformacijeComponent } from './statistika-klijenti/informacije/informacije.component';
 
 
 
@@ -31,6 +33,7 @@ const routes: Routes = [
             { path: '', component: StatistikaComponent },
             { path: 'klijenti', component: KlijentiComponent },
             { path: 'proizvodi', component: ProizvodiComponent },
+            { path: 'domen', component: DomenComponent },
             { path: 'postavke', component: PostavkeComponent },
             { path: 'klijenti/novi-klijent', component: NoviKlijentComponent },
             { path: 'klijenti/:id', component: ProfilComponent },
@@ -46,6 +49,8 @@ const routes: Routes = [
             { path: 'ponavljajuci-racun/novi-ponavljajuci-racun', component: NoviPonvaljajuciRacunComponent },
             { path: 'ponavljajuci-racun/:id', component: PonavljajuciDetaljiComponent },
             { path: 'statistika-klijenti', component: StatistikaKlijentiComponent },
+            { path: 'statistika-klijenti/:id', component: InformacijeComponent },
+
 
 
         ]

@@ -38,4 +38,7 @@ export class KlijentService {
   getKlijentRacun(klijentId: any) {
     return this.db.collection('klijenti').doc(klijentId).collection('racun').snapshotChanges();
   }
+  getKlijentPredracun(klijentId: any) {
+    return this.db.collection('klijenti').doc(klijentId).collection('predracun').snapshotChanges();
+  }
 }

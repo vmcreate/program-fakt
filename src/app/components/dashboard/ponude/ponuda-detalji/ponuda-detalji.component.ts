@@ -197,7 +197,8 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       proizvodi: this.izabraniProizvodi,
       status: 'nacrt',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      kompanijaUid: this.kompanijaId
     }
 
     this.racunService.updateNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)
@@ -218,7 +219,8 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       proizvodi: this.izabraniProizvodi,
       status: 'zavrseno',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      kompanijaUid: this.kompanijaId
     }
 
     this.racunService.updateNacrt(this.kompanijaId, this.routeId, data, this.KlijentUid)

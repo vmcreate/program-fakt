@@ -1,0 +1,8 @@
+@import '../../ponude/ponude.component.css';
+@import '../../statistika/statistika.component.css';
+h3{
+    margin-top: 20px;
+}
+h2:first-of-type{
+    cursor: pointer;
+}

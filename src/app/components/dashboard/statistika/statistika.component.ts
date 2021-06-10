@@ -40,11 +40,11 @@ export class StatistikaComponent implements OnInit {
 
           }
           if (predracun.payload.doc.data().placeno === false && predracun.payload.doc.data().status === 'zavrseno') {
-            this.neNaplceni?.push(...predracun.payload.doc.data().proizvodi);
+            this.neNaplceni?.push({ ukupno: predracun.payload.doc.data().ukupno });
 
           }
           if (predracun.payload.doc.data().placeno === true && predracun.payload.doc.data().status === 'zavrseno') {
-            this.naplaceniProizvod?.push(...predracun.payload.doc.data().proizvodi);
+            this.naplaceniProizvod?.push({ ukupno: predracun.payload.doc.data().ukupno });
 
           }
         })

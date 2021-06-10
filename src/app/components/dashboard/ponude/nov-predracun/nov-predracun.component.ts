@@ -11,6 +11,7 @@ declare var jsPDF: any;
 import html2canvas from 'html2canvas';
 import { RacunService } from 'src/app/service/racun.service';
 import { Predracun } from 'src/app/model/Predracun';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nov-predracun',
@@ -36,7 +37,8 @@ export class NovPredracunComponent implements OnInit {
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
-    private racunService: RacunService
+    private racunService: RacunService,
+    private router: Router
   ) { }
 
 
@@ -147,6 +149,7 @@ export class NovPredracunComponent implements OnInit {
       brojponude: this.predracun,
       ime: this.izabranaFirma?.firma,
       klijentUid: this.izabranaFirma?.id,
+      kompanijaUid: this.kompanijaId,
       datumIzdavanja: this.datumIzdavanja?.valueOf(),
       datumVazenja: this.datumVazenja?.valueOf(),
       deposit: this.deposit,
@@ -161,6 +164,7 @@ export class NovPredracunComponent implements OnInit {
     this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
       this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun)),
         this.kompanijaService.toast('Nacrt zapamcen', 'OK')
+      this.router.navigate(['dashboard', 'ponude'])
 
     })
   }
@@ -177,11 +181,18 @@ export class NovPredracunComponent implements OnInit {
       proizvodi: this.izabraniProizvodi,
       status: 'zavrseno',
       mesto: this.mesto,
-      godina: this.godina
+      godina: this.godina,
+      kompanijaUid: this.kompanijaId
     }
 
-    this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id);
-    this.kompanijaService.toast('Predracun zapamcen', 'OK')
+    this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id)
+      .then(() => {
+        this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun)),
+          this.kompanijaService.toast('Nacrt zapamcen', 'OK')
+        this.router.navigate(['dashboard', 'ponude'])
+
+
+      })
   }
   posalji() {
     //na mail

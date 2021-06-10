@@ -14,6 +14,7 @@
 --dodavanje troskova u proizvode x
 --Zakazane funkcije treba menjati brojracuna,datum izdavanja i vazenja i upisivate nove racune x
 --dodavanje filtera i sortiranja na tabele *
+--dodavanje domena- posebna stranica domeni, gde dodamo domen i ime klijenta, pa kad pravimo racun/predracun izadje nam domen u proizvode.
 --statistika klijenta/statistika usluga VELIK POSAO!
 
 
