@@ -22,6 +22,8 @@ import { StatistikaComponent } from './statistika/statistika.component';
 import { StatistikaKlijentiComponent } from './statistika-klijenti/statistika-klijenti.component';
 import { DomenComponent } from './domen/domen.component';
 import { InformacijeComponent } from './statistika-klijenti/informacije/informacije.component';
+import { NoviDomenComponent } from './domen/novi-domen/novi-domen.component';
+import { DomenInformacijeComponent } from './domen/domen-informacije/domen-informacije.component';
 
 
 
@@ -50,6 +52,8 @@ const routes: Routes = [
             { path: 'ponavljajuci-racun/:id', component: PonavljajuciDetaljiComponent },
             { path: 'statistika-klijenti', component: StatistikaKlijentiComponent },
             { path: 'statistika-klijenti/:id', component: InformacijeComponent },
+            { path: 'domen/novi-domen', component: NoviDomenComponent },
+            { path: 'domen/:id', component: DomenInformacijeComponent },
 
 
 

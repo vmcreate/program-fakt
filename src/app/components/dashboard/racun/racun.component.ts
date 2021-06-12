@@ -33,13 +33,14 @@ export class RacunComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('ispalio2')
     this.kompanijaService.getKompaniju();
     this.isLoading = true;
     this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
       this.kompanijaId = kompanijaId;
-      this.racunService.getRacune(kompanijaId).subscribe(res => {
-        this.isLoading = false;
+    })
+    setTimeout(() => {
+      this.isLoading = false;
+      this.racunService.getRacune(this.kompanijaId).subscribe(res => {
         this.racuni = [];
         res.map((predracun: any) => {
           this.racuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
@@ -51,6 +52,7 @@ export class RacunComponent implements OnInit {
           switch (property) {
             case 'iznos': return item.ukupno;
             case 'datumI': {
+
               let newDate = new Date(item.datumIzdavanja).valueOf();
               return newDate;
             }
@@ -61,10 +63,8 @@ export class RacunComponent implements OnInit {
             default: return item[property];
           }
         };
-
       })
-    })
-
+    }, 500);
   }
 
 
@@ -76,7 +76,6 @@ export class RacunComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     filterValue.trim().toLowerCase();
     this.dataSource.filter = filterValue;
-    console.log(filterValue.lastIndexOf);
   }
 
 }

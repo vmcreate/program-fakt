@@ -79,7 +79,13 @@ export class NovPredracunComponent implements OnInit {
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({
+      datumDodele: new Date().valueOf(),
+      klijent: this.izabranaFirma, id: p.id,
+      ime: p.ime, napomena: p.napomena,
+      cena: p.cena, troskovi: p.troskovi,
+      kolicina: 1, ukupno: p.cena * 1
+    })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
   }
@@ -140,11 +146,37 @@ export class NovPredracunComponent implements OnInit {
     });
   }
   izaberiFirmu(klijent: Klijent) {
+    this.izabraniProizvodi = [];
+    this.proizvodi = [];
     this.izabranaFirma = klijent;
     this.kompanijaService.toast('Klijent izabran', 'OK')
+    this.proizvodService.getProizvode(this.kompanijaId).subscribe(res => {
+
+      res.map((proizvod: any) => {
+        this.proizvodi?.push({ ...proizvod.payload.doc.data(), id: proizvod.payload.doc.id })
+      })
+    })
+    this.proizvodService.getDomene(this.kompanijaId).subscribe(res => {
+      res.map((domen: any) => {
+        const domenRes = domen.payload.doc.data();
+        if (this.izabranaFirma?.id === domenRes.klijent.id || domenRes.datumDodele === null) {
+          this.proizvodi?.push({ ...domen.payload.doc.data(), id: domen.payload.doc.id })
+        }
+
+      })
+      console.log(this.proizvodi)
+    })
   }
   // KONTROLE DUGMAD
   nacrt() {
+    const domenArr: any = [];
+    this.izabraniProizvodi.map(item => {
+      if (item.napomena === 'Domen') {
+        domenArr.push(item);
+      } if (item.datumDodele === null) [
+        item.datumDodele === new Date().valueOf()
+      ]
+    })
     const data: Predracun = {
       brojponude: this.predracun,
       ime: this.izabranaFirma?.firma,
@@ -164,11 +196,26 @@ export class NovPredracunComponent implements OnInit {
     this.racunService.zapamtiNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
       this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun)),
         this.kompanijaService.toast('Nacrt zapamcen', 'OK')
-      this.router.navigate(['dashboard', 'ponude'])
 
+
+    }).then(() => {
+      domenArr.forEach((domen: any) => {
+        this.proizvodService.updateDomen(this.kompanijaId, domen.id, { ...domen, klijent: domen.klijent, datumDodele: new Date().valueOf() })
+      })
+
+    }).then(() => {
+      this.router.navigate(['dashboard', 'ponude'])
     })
   }
   zavrsi() {
+    const domenArr: any = [];
+    this.izabraniProizvodi.map(item => {
+      if (item.napomena === 'Domen') {
+        domenArr.push(item);
+      } if (item.datumDodele === null) [
+        item.datumDodele === new Date().valueOf()
+      ]
+    })
     const data: Predracun = {
       brojponude: this.predracun,
       ime: this.izabranaFirma?.firma,
@@ -189,9 +236,17 @@ export class NovPredracunComponent implements OnInit {
       .then(() => {
         this.kompanijaService.updatePredracun(this.kompanijaId, Number(this.predracun)),
           this.kompanijaService.toast('Nacrt zapamcen', 'OK')
+
+
+
+      })
+      .then(() => {
+        domenArr.forEach((domen: any) => {
+          this.proizvodService.updateDomen(this.kompanijaId, domen.id, { ...domen, klijent: domen.klijent, datumDodele: new Date().valueOf() })
+        })
+
+      }).then(() => {
         this.router.navigate(['dashboard', 'ponude'])
-
-
       })
   }
   posalji() {

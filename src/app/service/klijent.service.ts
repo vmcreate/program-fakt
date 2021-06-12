@@ -41,4 +41,9 @@ export class KlijentService {
   getKlijentPredracun(klijentId: any) {
     return this.db.collection('klijenti').doc(klijentId).collection('predracun').snapshotChanges();
   }
+  async getKlijentRP(klijentId: any) {
+    const racun = await this.db.collection('klijenti').doc(klijentId).collection('racun').snapshotChanges();
+    const predracun = await this.db.collection('klijenti').doc(klijentId).collection('predracun').snapshotChanges();
+    return { racun, predracun }
+  }
 }

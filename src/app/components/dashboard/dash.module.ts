@@ -27,6 +27,8 @@ import { StatistikaKlijentiComponent } from './statistika-klijenti/statistika-kl
 import { ZaradaComponent } from './statistika-klijenti/zarada/zarada.component';
 import { DomenComponent } from './domen/domen.component';
 import { InformacijeComponent } from './statistika-klijenti/informacije/informacije.component';
+import { NoviDomenComponent } from './domen/novi-domen/novi-domen.component';
+import { DomenInformacijeComponent } from './domen/domen-informacije/domen-informacije.component';
 
 
 
@@ -36,7 +38,7 @@ import { InformacijeComponent } from './statistika-klijenti/informacije/informac
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent, StatistikaComponent, StatistikaKlijentiComponent, ZaradaComponent, DomenComponent, InformacijeComponent
+    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent, StatistikaComponent, StatistikaKlijentiComponent, ZaradaComponent, DomenComponent, InformacijeComponent, NoviDomenComponent, DomenInformacijeComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule,

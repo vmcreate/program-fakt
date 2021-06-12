@@ -86,6 +86,7 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
           this.klijentMB = res.payload.data().maticni_broj;
           this.klijentPib = res.payload.data().pib;
           this.klijentFirma = res.payload.data().firma;
+          this.izabranaFirma = res.payload.data();
         })
 
         this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
@@ -97,6 +98,15 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
           this.proizvodi?.push({ ...proizvod.payload.doc.data(), id: proizvod.payload.doc.id })
         })
       })
+      this.proizvodService.getDomene(this.kompanijaId).subscribe(res => {
+        res.map((domen: any) => {
+          const domenRes = domen.payload.doc.data();
+          if (this.KlijentUid === domenRes.klijent.id || domenRes.datumDodele === null) {
+            this.proizvodi?.push({ ...domen.payload.doc.data(), id: domen.payload.doc.id })
+          }
+
+        })
+      })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
         this.make_base(this.kompanija?.imageUrl);
@@ -105,9 +115,15 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({
+      datumDodele: new Date().valueOf(),
+      klijent: this.izabranaFirma, id: p.id,
+      ime: p.ime, napomena: p.napomena,
+      cena: p.cena, troskovi: p.troskovi,
+      kolicina: 1, ukupno: p.cena * 1
+    })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
-    this.sveUkupno = this.ukupno - this.popust;
+    this.sveUkupno = this.ukupno - this.deposit - this.popust;
   }
   deleteIzabraniProizvod(id: any) {
     const index = this.izabraniProizvodi?.findIndex((ind, index) => index === id);
@@ -169,6 +185,14 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
   }
   // KONTROLE DUGMAD
   nacrt() {
+    const domenArr: any = [];
+    this.izabraniProizvodi.map(item => {
+      if (item.napomena === 'Domen') {
+        domenArr.push(item);
+      } if (item.datumDodele === null) [
+        item.datumDodele === new Date().valueOf()
+      ]
+    })
     const data: Pracun = {
       ime: this.klijent,
       pocetniDatum: this.datumIzdavanja?.valueOf(),
@@ -187,11 +211,24 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
 
     this.racunService.updatePonavljajuciRacunNacrt(this.kompanijaId, this.routeId, data)
       .then(() => {
-        this.kompanijaService.toast('Nacrt uspesno promenjen', 'OK')
+        domenArr.forEach((domen: any) => {
+          this.proizvodService.updateDomen(this.kompanijaId, domen.id, { ...domen, klijent: domen.klijent, datumDodele: new Date().valueOf() })
+        })
 
-      })
+      }).then(() => {
+        this.router.navigate(['dashboard', 'ponavljajuci-racun'])
+      });
+    this.kompanijaService.toast('Racun zapamcen', 'OK')
   }
   zavrsi() {
+    const domenArr: any = [];
+    this.izabraniProizvodi.map(item => {
+      if (item.napomena === 'Domen') {
+        domenArr.push(item);
+      } if (item.datumDodele === null) [
+        item.datumDodele === new Date().valueOf()
+      ]
+    })
     const data: Pracun = {
       ime: this.klijent,
       pocetniDatum: this.datumIzdavanja?.valueOf(),
@@ -210,9 +247,14 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
 
     this.racunService.updatePonavljajuciRacunNacrt(this.kompanijaId, this.routeId, data)
       .then(() => {
-        this.kompanijaService.toast('Status uspesno promenjen', 'OK')
+        domenArr.forEach((domen: any) => {
+          this.proizvodService.updateDomen(this.kompanijaId, domen.id, { ...domen, klijent: domen.klijent, datumDodele: new Date().valueOf() })
+        })
 
-      })
+      }).then(() => {
+        this.router.navigate(['dashboard', 'ponavljajuci-racun'])
+      });
+    this.kompanijaService.toast('Racun zapamcen', 'OK')
   }
   posalji() { }
   deleteP() {

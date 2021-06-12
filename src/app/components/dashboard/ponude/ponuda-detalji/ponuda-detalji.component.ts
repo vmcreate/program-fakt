@@ -122,7 +122,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
     })
   }
   dodajStavku(p: Proizvod) {
-    this.izabraniProizvodi?.push({ id: p.id, proizvod: p.proizvod, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
+    this.izabraniProizvodi?.push({ id: p.id, ime: p.ime, napomena: p.napomena, cena: p.cena, troskovi: p.troskovi, kolicina: 1, ukupno: p.cena * 1 })
     this.ukupno = this.izabraniProizvodi.reduce((a, b) => a + b.ukupno, 0)
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
   }

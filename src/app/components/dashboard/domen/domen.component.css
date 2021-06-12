@@ -1,1 +1,5 @@
 @import '../proizvodi/proizvodi.component.css';
+@import '../statistika/statistika.component.css';
+td, th {
+    width: 20%;
+  }

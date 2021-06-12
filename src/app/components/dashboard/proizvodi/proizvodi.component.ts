@@ -17,7 +17,8 @@ export class ProizvodiComponent implements OnInit, OnDestroy {
   subKompanija?: Subscription;
   subKlijent?: Subscription;
 
-  constructor(private klijentiService: KlijentService, private kompanijaService: KompanijaService, private proizvodiService: ProizvodService) {
+  constructor(private klijentiService: KlijentService,
+    private kompanijaService: KompanijaService, private proizvodiService: ProizvodService) {
 
   }
   ngOnInit() {
