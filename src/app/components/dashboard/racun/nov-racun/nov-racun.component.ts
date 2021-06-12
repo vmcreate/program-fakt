@@ -155,7 +155,6 @@ export class NovRacunComponent implements OnInit {
     this.izabranaFirma = klijent;
     this.kompanijaService.toast('Klijent izabran', 'OK')
     this.proizvodService.getProizvode(this.kompanijaId).subscribe(res => {
-
       res.map((proizvod: any) => {
         this.proizvodi?.push({ ...proizvod.payload.doc.data(), id: proizvod.payload.doc.id })
       })
@@ -168,7 +167,7 @@ export class NovRacunComponent implements OnInit {
         }
 
       })
-      console.log(this.proizvodi)
+
     })
   }
   // KONTROLE DUGMAD
@@ -199,7 +198,6 @@ export class NovRacunComponent implements OnInit {
       kompanijaUid: this.kompanijaId
 
     }
-
     this.racunService.zapamtiRacunNacrt(this.kompanijaId, data, this.izabranaFirma?.id).then(() => {
       this.kompanijaService.updateRacun(this.kompanijaId, Number(this.racun)),
         this.kompanijaService.toast('Nacrt zapamcen', 'OK')

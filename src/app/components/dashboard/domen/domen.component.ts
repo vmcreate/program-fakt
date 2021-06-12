@@ -28,29 +28,32 @@ export class DomenComponent implements OnInit {
     this.kompanijaService.getKompaniju();
     this.kompanijaService.getIzabranuKompaniju().subscribe(res => {
       this.kompanijaId = res;
+      if (res) {
+        this.domeni = [];
+        this.proizvodiService.getDomene(this.kompanijaId).subscribe(res => {
+          res.map((proizvod => {
+            this.domeni?.push({
+              ...proizvod.payload.doc.data(),
+              klijent: proizvod.payload.doc.data().klijent.firma,
+              id: proizvod.payload.doc.id
+            })
+          }))
+
+          this.dataSource = new MatTableDataSource();
+          this.dataSource.data = this.domeni;
+          this.dataSource.sort = this.sort;
+          this.trosak = this.domeni?.reduce((a, b) => a + b.troskovi, 0)
+          this.ukupno = this.domeni?.reduce((a, b) => a + b.cena, 0)
+          this.prihod = Number(this.ukupno) - Number(this.trosak);
+
+
+        })
+      }
 
     })
-    setTimeout(() => {
-      this.domeni = [];
-      this.proizvodiService.getDomene(this.kompanijaId).subscribe(res => {
-        res.map((proizvod => {
-          this.domeni?.push({
-            ...proizvod.payload.doc.data(),
-            klijent: proizvod.payload.doc.data().klijent.firma,
-            id: proizvod.payload.doc.id
-          })
-        }))
-
-        this.dataSource = new MatTableDataSource();
-        this.dataSource.data = this.domeni;
-        this.dataSource.sort = this.sort;
-        this.trosak = this.domeni?.reduce((a, b) => a + b.troskovi, 0)
-        this.ukupno = this.domeni?.reduce((a, b) => a + b.cena, 0)
-        this.prihod = Number(this.ukupno) - Number(this.trosak);
 
 
-      })
-    }, 1000);
+
   }
 
 }

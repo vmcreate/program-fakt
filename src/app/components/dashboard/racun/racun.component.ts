@@ -37,34 +37,37 @@ export class RacunComponent implements OnInit {
     this.isLoading = true;
     this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
       this.kompanijaId = kompanijaId;
-    })
-    setTimeout(() => {
-      this.isLoading = false;
-      this.racunService.getRacune(this.kompanijaId).subscribe(res => {
-        this.racuni = [];
-        res.map((predracun: any) => {
-          this.racuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
-          this.dataSource = new MatTableDataSource();
-          this.dataSource.data = this.racuni;
-          this.dataSource.sort = this.sort;
-        })
-        this.dataSource.sortingDataAccessor = (item: any, property: any) => {
-          switch (property) {
-            case 'iznos': return item.ukupno;
-            case 'datumI': {
+      if (kompanijaId) {
+        this.isLoading = false;
+        this.racunService.getRacune(this.kompanijaId).subscribe(res => {
+          this.racuni = [];
+          res.map((predracun: any) => {
+            this.racuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
+            this.dataSource = new MatTableDataSource();
+            this.dataSource.data = this.racuni;
+            this.dataSource.sort = this.sort;
+          })
+          this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+            switch (property) {
+              case 'iznos': return item.ukupno;
+              case 'datumI': {
 
-              let newDate = new Date(item.datumIzdavanja).valueOf();
-              return newDate;
+                let newDate = new Date(item.datumIzdavanja).valueOf();
+                return newDate;
+              }
+              case 'datumV': {
+                let newDate = new Date(item.datumVazenja).valueOf();
+                return newDate;
+              }
+              default: return item[property];
             }
-            case 'datumV': {
-              let newDate = new Date(item.datumVazenja).valueOf();
-              return newDate;
-            }
-            default: return item[property];
-          }
-        };
-      })
-    }, 500);
+          };
+        })
+      }
+    })
+
+
+
   }
 
 

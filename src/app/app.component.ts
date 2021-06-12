@@ -15,10 +15,11 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.auth.checkStatus();
     this.auth.checkStatus().subscribe(auth => {
       if (auth) {
         this.isAuth = true;
-        this.dbk.getKompaniju();
+        // this.dbk.getKompaniju();
         this.dbk.isAdminKompanija(auth.uid);
       }
       else {

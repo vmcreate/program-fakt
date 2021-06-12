@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Predracun } from 'src/app/model/Predracun';
 import { KlijentService } from 'src/app/service/klijent.service';
 import { KompanijaService } from 'src/app/service/kompanija.service';
@@ -10,7 +11,7 @@ import { RacunService } from 'src/app/service/racun.service';
   templateUrl: './statistika.component.html',
   styleUrls: ['./statistika.component.css']
 })
-export class StatistikaComponent implements OnInit {
+export class StatistikaComponent implements OnInit, OnDestroy {
   racuni?: Array<any> = [];
   neNaplceni?: Array<any> = [];
   naplaceniProizvod?: Array<any> = [];
@@ -18,6 +19,8 @@ export class StatistikaComponent implements OnInit {
   nenaplaceno?: number = 0;
   ukupniPrihod?: number = 0
   kompanijaId?: string;
+  subRacuni?: Subscription;
+  subKompanija?: Subscription;
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -25,9 +28,9 @@ export class StatistikaComponent implements OnInit {
 
   ngOnInit(): void {
     this.kompanijaService.getKompaniju();
-    this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
+    this.subKompanija = this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
       this.kompanijaId = kompanijaId;
-      this.racunService.getRacune(kompanijaId).subscribe(res => {
+      this.subRacuni = this.racunService.getRacune(kompanijaId).subscribe(res => {
         this.racuni = [];
         this.neNaplceni = [];
         this.naplaceniProizvod = [];
@@ -58,5 +61,8 @@ export class StatistikaComponent implements OnInit {
     })
 
   }
-
+  ngOnDestroy() {
+    this.subRacuni?.unsubscribe();
+    this.subKompanija?.unsubscribe();
+  }
 }
