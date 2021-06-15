@@ -1,4 +1,6 @@
 <h2>Racuni</h2>
+<daterange (naKlik)="onDateChange($event)"></daterange>
+<header-stat [ukupniTrosak]="ukupniTrosak" [nenaplaceno]="nenaplaceno" [ukupniPrihod]="ukupniPrihod"></header-stat>
 <div class="headerBtn">
     <button routerLink="nov-racun" class="main-btn" mat-raised-button color="accent">
         <span class="material-icons">

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Domen } from 'src/app/model/Doment';
 import { KompanijaService } from 'src/app/service/kompanija.service';
 import { ProizvodService } from 'src/app/service/proizvod.service';
 
@@ -55,5 +54,25 @@ export class DomenComponent implements OnInit {
 
 
   }
+  onDateChange(ev: any) {
+    const start: number = ev.start;
+    const end: number = ev.end;
+    console.log(start, end)
+    this.dataSource.data = this.domeni?.filter(domen =>
+      domen.datumDodele >= start && domen.datumDodele <= end
 
+    )
+
+    if (this.dataSource.data.length === 0) {
+      this.dataSource.data = this.domeni;
+      this.trosak = this.domeni?.reduce((a, b) => a + b.troskovi, 0)
+      this.ukupno = this.domeni?.reduce((a, b) => a + b.cena, 0)
+      this.prihod = Number(this.ukupno) - Number(this.trosak);
+    } else {
+      this.trosak = this.dataSource.data.reduce((a: any, b: any) => a + b.troskovi, 0)
+      this.ukupno = this.dataSource.data.reduce((a: any, b: any) => a + b.cena, 0)
+      this.prihod = Number(this.ukupno) - Number(this.trosak);
+    }
+
+  }
 }

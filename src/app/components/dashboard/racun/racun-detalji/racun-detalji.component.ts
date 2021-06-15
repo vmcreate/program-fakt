@@ -164,20 +164,36 @@ export class RacunDetaljiComponent implements OnInit, OnDestroy {
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
 
   }
+  // public convetToPDF() {
+  //   let DATA: any = document.getElementById('pdf');
+
+  //   html2canvas(DATA).then(canvas => {
+
+  //     let fileWidth = 200;
+  //     let fileHeight = canvas.height * fileWidth / canvas.width;
+
+  //     const FILEURI = canvas.toDataURL('image/png')
+  //     let PDF = new jspdf('p', 'mm', 'a4');
+  //     let position = 0;
+  //     PDF.addImage(FILEURI, 3, 3, 208, 250)
+
+  //     PDF.save('angular-demo.pdf');
+  //   });
+  // }
   public convetToPDF() {
-    let DATA: any = document.getElementById('pdf');
+    var data: any = document.getElementById('pdf');
+    html2canvas(data).then(canvas => {
+      // Few necessary setting options  
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
 
-    html2canvas(DATA).then(canvas => {
-
-      let fileWidth = 200;
-      let fileHeight = canvas.height * fileWidth / canvas.width;
-
-      const FILEURI = canvas.toDataURL('image/png')
-      let PDF = new jspdf('p', 'mm', 'a4');
-      let position = 0;
-      PDF.addImage(FILEURI, 3, 3, 208, 250)
-
-      PDF.save('angular-demo.pdf');
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('MYPdf.pdf'); // Generated PDF   
     });
   }
   izaberiFirmu(klijent: Klijent) {

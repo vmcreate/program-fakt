@@ -61,6 +61,20 @@ export class PonudeComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     filterValue.trim().toLowerCase();
     this.dataSource.filter = filterValue;
-    console.log(filterValue.lastIndexOf);
+
+  }
+  onDateChange(ev: any) {
+    const start: number = ev.start;
+    const end: number = ev.end;
+
+    this.dataSource.data = this.predracuni?.filter((item: any) =>
+      item.datumIzdavanja >= start && item.datumIzdavanja <= end
+
+    )
+
+    if (this.dataSource.data.length === 0) {
+      this.dataSource.data = this.predracuni;
+
+    }
   }
 }

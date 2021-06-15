@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Predracun } from 'src/app/model/Predracun';
 import { KlijentService } from 'src/app/service/klijent.service';
 import { KompanijaService } from 'src/app/service/kompanija.service';
 import { ProizvodService } from 'src/app/service/proizvod.service';
 import { RacunService } from 'src/app/service/racun.service';
+
 
 @Component({
   selector: 'app-statistika',
@@ -21,6 +21,7 @@ export class StatistikaComponent implements OnInit, OnDestroy {
   kompanijaId?: string;
   subRacuni?: Subscription;
   subKompanija?: Subscription;
+
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -58,6 +59,7 @@ export class StatistikaComponent implements OnInit, OnDestroy {
         console.log('Nenaplaceno:', this.nenaplaceno, 'Ukupni trosak:', this.ukupniTrosak, 'Ukupni prihod:', this.ukupniPrihod)
 
       })
+
     })
 
   }

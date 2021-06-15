@@ -29,7 +29,10 @@ import { DomenComponent } from './domen/domen.component';
 import { InformacijeComponent } from './statistika-klijenti/informacije/informacije.component';
 import { NoviDomenComponent } from './domen/novi-domen/novi-domen.component';
 import { DomenInformacijeComponent } from './domen/domen-informacije/domen-informacije.component';
-
+import { DaterangeComponent } from 'src/app/modul/daterange/daterange.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { HeaderStatComponent } from 'src/app/modul/header-stat/header-stat.component';
 
 
 @NgModule({
@@ -38,10 +41,15 @@ import { DomenInformacijeComponent } from './domen/domen-informacije/domen-infor
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent, ProizvodComponent, PonudeComponent, RacunComponent, NovPredracunComponent, PonudaDetaljiComponent, PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent, PonavljajuciDetaljiComponent, StatistikaComponent, StatistikaKlijentiComponent, ZaradaComponent, DomenComponent, InformacijeComponent, NoviDomenComponent, DomenInformacijeComponent
+    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent,
+    ProizvodComponent, PonudeComponent, RacunComponent,
+    NovPredracunComponent, PonudaDetaljiComponent,
+    PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent,
+    PonavljajuciDetaljiComponent, StatistikaComponent, StatistikaKlijentiComponent, ZaradaComponent, DomenComponent,
+    InformacijeComponent, NoviDomenComponent, DomenInformacijeComponent, DaterangeComponent, HeaderStatComponent
   ],
   imports: [
-    CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule,
+    CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule, NgApexchartsModule
   ]
 })
 export class DashModule { }

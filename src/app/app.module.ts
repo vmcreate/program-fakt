@@ -15,10 +15,14 @@ import { environment } from 'src/environments/environment';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    EnterComponent
+    EnterComponent,
+
+
 
 
 

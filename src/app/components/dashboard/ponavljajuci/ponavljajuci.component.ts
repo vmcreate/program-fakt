@@ -57,11 +57,25 @@ export class PonavljajuciComponent implements OnInit {
     })
 
   }
+  onDateChange(ev: any) {
+    const start: number = ev.start;
+    const end: number = ev.end;
+
+    this.dataSource.data = this.pracuni?.filter((racun: any) =>
+      racun.pocetniDatum >= start && racun.pocetniDatum <= end
+
+    )
+
+    if (this.dataSource.data.length === 0) {
+      this.dataSource.data = this.pracuni;
+
+    }
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     filterValue.trim().toLowerCase();
     this.dataSource.filter = filterValue;
-    console.log(filterValue.lastIndexOf);
+
   }
 }
 

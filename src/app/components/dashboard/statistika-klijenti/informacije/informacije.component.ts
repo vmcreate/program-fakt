@@ -58,7 +58,6 @@ export class InformacijeComponent implements OnInit, OnDestroy {
           racuni.map(racun => {
             if (this.kompanijaId === racun.payload.doc.data().kompanijaUid) {
               this.racuni?.push({ ...racun.payload.doc.data(), id: racun.payload.doc.data(), tip: 'Racun' })
-              console.log(this.racuni)
               this.proizvodi?.push(...racun.payload.doc.data().proizvodi)
               if (racun.payload.doc.data().status === 'zavrseno') {
                 this.ukupniTrosakRacuni?.push(...racun.payload.doc.data().proizvodi);
@@ -69,7 +68,7 @@ export class InformacijeComponent implements OnInit, OnDestroy {
 
               }
               if (racun.payload.doc.data().placeno === true && racun.payload.doc.data().status === 'zavrseno') {
-                console.log(racun.payload.doc.data())
+
                 this.naplaceniProizvod?.push({ ukupno: racun.payload.doc.data().ukupno });
 
               }
@@ -94,7 +93,7 @@ export class InformacijeComponent implements OnInit, OnDestroy {
             unique = this.proizvodi?.map(proizvod => {
               return proizvod.ime
             })
-            console.log(unique)
+
             this.proizvodiUnique = [...new Set(unique)];
             this.isLoading = false;
             this.dataSource = new MatTableDataSource();

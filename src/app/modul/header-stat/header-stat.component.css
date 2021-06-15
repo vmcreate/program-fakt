@@ -1,0 +1,10 @@
+.headerStat{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.headerStat .statCard{
+    flex: 1;
+    margin: 5px;
+}

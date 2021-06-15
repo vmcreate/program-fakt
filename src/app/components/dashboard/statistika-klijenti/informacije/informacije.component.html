@@ -1,18 +1,5 @@
 <h2 routerLink="/dashboard/statistika-klijenti/">Statistika Klijenta</h2>
-<div class="headerStat">
-    <mat-card class="statCard">
-        <mat-card-title>Ukupni prihod</mat-card-title>
-        <mat-card-subtitle>{{ukupniPrihod}}.00 RSD</mat-card-subtitle>
-    </mat-card>
-    <mat-card class="statCard">
-        <mat-card-title>Ukupni troskovi</mat-card-title>
-        <mat-card-subtitle>{{ukupniTrosak}}.00 RSD</mat-card-subtitle>
-    </mat-card>
-    <mat-card class="statCard">
-        <mat-card-title>Nenaplaceno</mat-card-title>
-        <mat-card-subtitle>{{nenaplaceno}}.00 RSD</mat-card-subtitle>
-    </mat-card>
-</div>
+<header-stat [ukupniTrosak]="ukupniTrosak" [nenaplaceno]="nenaplaceno" [ukupniPrihod]="ukupniPrihod"></header-stat>
 <h3>Fakture/Profakture</h3>
 <mat-divider></mat-divider>
 <mat-spinner *ngIf="isLoading"></mat-spinner>

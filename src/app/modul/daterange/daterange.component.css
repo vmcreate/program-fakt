@@ -1,0 +1,9 @@
+.datum{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.datum button{
+    margin-left: 10px;
+    
+}

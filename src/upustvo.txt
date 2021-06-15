@@ -14,8 +14,12 @@
 --dodavanje troskova u proizvode x
 --Zakazane funkcije treba menjati brojracuna,datum izdavanja i vazenja i upisivate nove racune x
 --dodavanje filtera i sortiranja na tabele *
---dodavanje domena- posebna stranica domeni, gde dodamo domen i ime klijenta, pa kad pravimo racun/predracun izadje nam domen u proizvode.
+--dodavanje domena- posebna stranica domeni, gde dodamo domen i ime klijenta, pa kad pravimo racun/predracun izadje nam domen u proizvode. x
 --statistika klijenta/statistika usluga VELIK POSAO!
+--PDF
+--PLAN ZA DATE RANGE, ZNACI DA BUDE ZAJEDNICKA KOMPONENTA, DATUM DODELE/IZDAVANJA DA SE FILTRIRA, 
+VECI OD POCETNOG A MANJI OD ZAVRSNOG DATUMA U TAJ OKVIR
+
 
 
 
