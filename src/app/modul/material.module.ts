@@ -26,6 +26,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatRippleModule } from '@angular/material/core';
 
+
+
 const MaterialComponents = [
     MatButtonModule,
     MatIconModule,
@@ -62,6 +64,8 @@ const MaterialComponents = [
     ],
     exports: [
         MaterialComponents
+    ],
+    declarations: [
     ]
 })
 export class MaterialModule { }

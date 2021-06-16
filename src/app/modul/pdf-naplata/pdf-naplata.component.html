@@ -1,0 +1,91 @@
+<button (click)="convetToPDF()" mat-raised-button color="warn"><span class="material-icons">
+        print
+    </span> Stampaj PDF</button>
+<div id="pdf">
+    <div class="kompanijaInfo">
+        <div class="info">
+            <div class="logo">
+
+                <img [src]="kompanija?.imageUrl" width="150px">
+            </div>
+        </div>
+        <div class="info" *ngIf="kompanija">
+            <ul>
+                <li>{{kompanija.kompanija}}</li>
+                <li>{{kompanija.ulica}}</li>
+                <li>{{kompanija.grad + ' ' + kompanija.ptp}}</li>
+                <li>{{kompanija.web_adresa}}</li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>PIB: {{kompanija?.pib}} </li>
+                <li>MB: {{kompanija?.maticni_broj}} </li>
+                <li>{{kompanija?.email}}</li>
+                <li>Tekući račun: 325-9500700005855-90
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h2>PONUDA</h2>
+    <hr>
+    <div class="klijentInfo">
+        <div class="info">
+            <ul>
+                <li>Broj racuna: {{brojracuna + '-' + godina}}</li>
+                <li *ngIf="datumIzdavanja">Datum ponude: {{datumIzdavanja | date:'dd.MM.YYYY.' }}
+                </li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>{{klijent}}</li>
+                <li>{{ulica}}</li>
+                <li>{{mesto}}</li>
+
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>PIB: {{klijentPib}}</li>
+                <li>MB: {{klijentMB}} </li>
+
+            </ul>
+        </div>
+    </div>
+    <h2>STAVKE</h2>
+    <hr>
+    <div class="proizvod">
+        <table>
+            <tr>
+                <th>R.Broj</th>
+                <th>Stavka</th>
+                <th>Opis</th>
+                <th>Cena</th>
+                <th>Kolicina</th>
+                <th>Ukupno</th>
+            </tr>
+            <tr *ngFor="let ip of izabraniProizvodi; let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{ip.ime}}</td>
+                <td>{{ip.napomena}}</td>
+                <td>{{ip.cena}}</td>
+                <td> {{ip.kolicina}}
+                </td>
+                <td>{{ip.ukupno}},00 RSD</td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div class="cenaKonacna">
+        <div class="info">
+            <ul>
+                <li>Ukupno: {{ukupno}}.00 RSD</li>
+                <li *ngIf="popust > 0">Popust: {{popust}}.00 RSD</li>
+                <li *ngIf="deposit > 0">Deposit: {{deposit}}.00 RSD</li>
+                <li>Sve ukupno: {{sveUkupno}}.00 RSD</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,13 @@ export class PonavljajuciComponent implements OnInit {
   dataSource?: any;
 
   displayedColumns: string[] = ['ime', 'datumI', 'datumV', 'iznos', 'status', 'detalji'];
+  ukupniTrosak?: number = 0;
+  nenaplaceno?: number = 0;
+  ukupniPrihod?: number = 0
 
+
+  pickDatumOd: any;
+  pickDatumDo: any;
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -60,7 +66,8 @@ export class PonavljajuciComponent implements OnInit {
   onDateChange(ev: any) {
     const start: number = ev.start;
     const end: number = ev.end;
-
+    this.pickDatumOd = ev.start;
+    this.pickDatumDo = ev.end;
     this.dataSource.data = this.pracuni?.filter((racun: any) =>
       racun.pocetniDatum >= start && racun.pocetniDatum <= end
 

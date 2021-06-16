@@ -18,7 +18,13 @@ export class PonudeComponent implements OnInit {
   dataSource?: any;
   kompanijaId?: string;
   displayedColumns: string[] = ['brojpredracuna', 'ime', 'datumI', 'datumV', 'iznos', 'status', 'detalji'];
+  ukupniTrosak?: number = 0;
+  nenaplaceno?: number = 0;
+  ukupniPrihod?: number = 0
 
+
+  pickDatumOd: any;
+  pickDatumDo: any;
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -66,7 +72,8 @@ export class PonudeComponent implements OnInit {
   onDateChange(ev: any) {
     const start: number = ev.start;
     const end: number = ev.end;
-
+    this.pickDatumOd = ev.start;
+    this.pickDatumDo = ev.end;
     this.dataSource.data = this.predracuni?.filter((item: any) =>
       item.datumIzdavanja >= start && item.datumIzdavanja <= end
 

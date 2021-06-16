@@ -114,7 +114,6 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
       })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
-        this.make_base(this.kompanija?.imageUrl);
         let racun = Number(this.kompanija?.racun) + 1;
 
         if (racun < 10) {
@@ -307,13 +306,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   }
 
 
-  make_base(url: any) {
-    var canvas: any = document.getElementById('viewport'),
-      context = canvas.getContext('2d');
-    let base_image = new Image();
-    base_image.src = url;
-    context.drawImage(base_image, 1, 1);
-  }
+
 
   ngOnDestroy() {
     this.subKompanija?.unsubscribe();

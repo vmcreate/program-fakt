@@ -22,10 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     EnterComponent,
 
-
-
-
-
   ],
   imports: [
     BrowserModule,

@@ -44,7 +44,7 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
   klijentPib: any;
   klijentMB: any;
   backgroundImg?: any;
-
+  brojponude: string = 'Bice dodeljeno';
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -109,7 +109,7 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
       })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
-        this.make_base(this.kompanija?.imageUrl);
+
 
       })
     })
@@ -266,14 +266,6 @@ export class PonavljajuciDetaljiComponent implements OnInit, OnDestroy {
   }
 
 
-
-  make_base(url: any) {
-    var canvas: any = document.getElementById('viewport'),
-      context = canvas.getContext('2d');
-    let base_image = new Image();
-    base_image.src = url;
-    context.drawImage(base_image, 1, 1);
-  }
 
   ngOnDestroy() {
     this.subKompanija?.unsubscribe();

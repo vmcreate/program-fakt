@@ -33,6 +33,8 @@ import { DaterangeComponent } from 'src/app/modul/daterange/daterange.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HeaderStatComponent } from 'src/app/modul/header-stat/header-stat.component';
+import { PdfTableComponent } from 'src/app/modul/pdf-table/pdf-table.component';
+import { PdfNaplataComponent } from 'src/app/modul/pdf-naplata/pdf-naplata.component';
 
 
 @NgModule({
@@ -41,12 +43,18 @@ import { HeaderStatComponent } from 'src/app/modul/header-stat/header-stat.compo
     ProizvodiComponent,
     DashboardComponent,
     NovaKompanijaFormaComponent,
-    NoviKlijentComponent, ProfilComponent, NoviProizvodComponent,
+    NoviKlijentComponent, ProfilComponent,
+    NoviProizvodComponent,
     ProizvodComponent, PonudeComponent, RacunComponent,
     NovPredracunComponent, PonudaDetaljiComponent,
-    PostavkeComponent, NovRacunComponent, RacunDetaljiComponent, PonavljajuciComponent, NoviPonvaljajuciRacunComponent,
-    PonavljajuciDetaljiComponent, StatistikaComponent, StatistikaKlijentiComponent, ZaradaComponent, DomenComponent,
-    InformacijeComponent, NoviDomenComponent, DomenInformacijeComponent, DaterangeComponent, HeaderStatComponent
+    PostavkeComponent, NovRacunComponent,
+    RacunDetaljiComponent, PonavljajuciComponent,
+    NoviPonvaljajuciRacunComponent,
+    PonavljajuciDetaljiComponent, StatistikaComponent,
+    StatistikaKlijentiComponent, ZaradaComponent, DomenComponent,
+    InformacijeComponent, NoviDomenComponent,
+    DomenInformacijeComponent, DaterangeComponent
+    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule, NgApexchartsModule

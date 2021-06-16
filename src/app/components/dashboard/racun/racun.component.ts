@@ -27,6 +27,9 @@ export class RacunComponent implements OnInit {
   ukupniTrosakRacuni?: Array<any> = [];
   neNaplceni?: Array<any> = [];
   naplaceniProizvod?: Array<any> = [];
+
+  pickDatumOd: any;
+  pickDatumDo: any;
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,
@@ -39,6 +42,7 @@ export class RacunComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.kompanijaService.getKompaniju();
     this.isLoading = true;
     this.kompanijaService.getIzabranuKompaniju().subscribe(kompanijaId => {
@@ -108,10 +112,12 @@ export class RacunComponent implements OnInit {
     filterValue.trim().toLowerCase();
     this.dataSource.filter = filterValue;
   }
+
   onDateChange(ev: any) {
     const start: number = ev.start;
     const end: number = ev.end;
-
+    this.pickDatumOd = ev.start;
+    this.pickDatumDo = ev.end;
     this.dataSource.data = this.racuni?.filter((racun: any) =>
       racun.datumIzdavanja >= start && racun.datumIzdavanja <= end
 
@@ -134,16 +140,16 @@ export class RacunComponent implements OnInit {
       if (racun.status === 'zavrseno') {
 
         this.ukupniTrosakRacuni?.push(...racun.proizvodi);
-        console.log('UT', this.ukupniTrosakRacuni)
+
       }
       if (racun.placeno === false && racun.status === 'zavrseno') {
         this.neNaplceni?.push({ ukupno: racun.ukupno });
-        console.log('NT', this.neNaplceni)
+
 
       }
       if (racun.placeno === true && racun.status === 'zavrseno') {
         this.naplaceniProizvod?.push({ ukupno: racun.ukupno });
-        console.log('PP', this.naplaceniProizvod)
+
 
       }
       this.ukupniTrosak = this.ukupniTrosakRacuni?.reduce((a, b) => a + b.troskovi, 0);

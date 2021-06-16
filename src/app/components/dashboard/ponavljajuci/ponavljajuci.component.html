@@ -52,3 +52,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<pdf-table *ngIf="dataSource" [klijenti]="dataSource.data" [ukupniTrosak]="ukupniTrosak" [nenaplaceno]="nenaplaceno"
+    [ukupniPrihod]="ukupniPrihod" [pickDatumOd]="pickDatumOd" [pickDatumDo]="pickDatumDo"></pdf-table>

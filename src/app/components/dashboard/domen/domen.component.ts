@@ -19,7 +19,9 @@ export class DomenComponent implements OnInit {
   trosak?: number = 0;
   ukupno?: number = 0;
   prihod?: number = 0
-
+  nenaplaceno?: number = 0;
+  pickDatumOd: any;
+  pickDatumDo: any;
   constructor(private kompanijaService: KompanijaService, private proizvodiService: ProizvodService) { }
   @ViewChild(MatSort) sort?: MatSort;
 
@@ -57,7 +59,9 @@ export class DomenComponent implements OnInit {
   onDateChange(ev: any) {
     const start: number = ev.start;
     const end: number = ev.end;
-    console.log(start, end)
+    this.pickDatumOd = ev.start;
+    this.pickDatumDo = ev.end;
+
     this.dataSource.data = this.domeni?.filter(domen =>
       domen.datumDodele >= start && domen.datumDodele <= end
 

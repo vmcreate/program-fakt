@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { concat, Subscription } from 'rxjs';
 import { Kompanija } from 'src/app/model/Kompanija';
 import { KlijentService } from 'src/app/service/klijent.service';
 import { KompanijaService } from 'src/app/service/kompanija.service';
@@ -52,14 +52,20 @@ export class PostavkeComponent implements OnInit, OnDestroy {
   }
   async onImagePicked(e: any) {
     const fileList: FileList = e.target.files;
+    let fileR: any;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        console.log('Rez', reader.result)
+        fileR = reader.result;
+      }
+      reader.readAsDataURL(file)
 
       this.storageService.upload(`/logo/${this.kompanija?.id}`, file)
         .then(data => {
           data.ref.getDownloadURL().then(imageUrl => {
-            this.kompanijaService.updateKompaniju(this.kompanija?.id, { imageUrl: imageUrl })
+            this.kompanijaService.updateKompaniju(this.kompanija?.id, { imageUrl: fileR })
             this.imageUrl = imageUrl;
             this.kompanijaService.toast('Logo je otpremljen', 'OK')
           })

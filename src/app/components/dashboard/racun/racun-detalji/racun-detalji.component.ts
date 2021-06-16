@@ -54,8 +54,21 @@ export class RacunDetaljiComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer
   ) { }
 
-
+  getBase64FromUrl = async (url: string) => {
+    const data = await fetch(url);
+    const blob = await data.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = function () {
+        const base64data = reader.result;
+        console.log(base64data)
+        resolve(base64data);
+      }
+    });
+  }
   ngOnInit(): void {
+
     this.kompanijaService.getKompaniju();
     this.route.params.subscribe(params => {
       const id = params['id']
@@ -109,7 +122,7 @@ export class RacunDetaljiComponent implements OnInit, OnDestroy {
       })
       this.kompanijaService.getKompInfo(kompanijaId).subscribe((res: any) => {
         this.kompanija = { ...res.payload.data() };
-        this.make_base(this.kompanija?.imageUrl);
+        this.getBase64FromUrl(this.kompanija?.imageUrl + '').then(console.log)
 
       })
     })
@@ -285,13 +298,7 @@ export class RacunDetaljiComponent implements OnInit, OnDestroy {
 
 
 
-  make_base(url: any) {
-    var canvas: any = document.getElementById('viewport'),
-      context = canvas.getContext('2d');
-    let base_image = new Image();
-    base_image.src = url;
-    context.drawImage(base_image, 1, 1);
-  }
+
 
   ngOnDestroy() {
     this.subKompanija?.unsubscribe();
