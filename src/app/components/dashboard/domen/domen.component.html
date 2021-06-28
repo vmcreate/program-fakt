@@ -35,18 +35,23 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Klijent </th>
         <td mat-cell *matCellDef="let element"> {{element.klijent}} </td>
     </ng-container>
-    <ng-container matColumnDef="datumD">
+    <!-- <ng-container matColumnDef="datumD">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum dodele </th>
         <td mat-cell *matCellDef="let element"> {{element.datumDodele | date:'dd.MM.YYYY'}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="datumI">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum isteka </th>
+        <td mat-cell *matCellDef="let element"> {{element.datumIsteka | date:'dd.MM.YYYY'}} </td>
     </ng-container>
     <ng-container matColumnDef="cena">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cena </th>
-        <td mat-cell *matCellDef="let element"> {{element.cena + ',00 RSD'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.cena === null? 0+ ',00 RSD':element.cena + ',00 RSD'}} </td>
     </ng-container>
     <!-- Weight Column -->
     <ng-container matColumnDef="troskovi">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Trosak </th>
-        <td mat-cell *matCellDef="let element"> {{element.troskovi + ',00 RSD'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.troskovi === null? 0+ ',00 RSD':element.troskovi + ',00 RSD'}}
+        </td>
     </ng-container>
     <!-- Weight Column -->
     <!-- Weight Column -->

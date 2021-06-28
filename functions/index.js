@@ -1,11 +1,23 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const cors = require('cors')({ origin: true });
+const nodemailer = require('nodemailer');
 admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
+
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    service: 'gmail',
+    auth: {
+        user: 'pfsportal20@gmail.com',
+        pass: 'pfsportal-20.'
+    }
+});
 exports.createUserNew = functions.https.onRequest((req, res) => {
     cors(req, res, () => {
         admin.auth().createUser({
@@ -54,12 +66,17 @@ exports.scheduledFunction = functions.pubsub.schedule('00 08 1 1/1 *')
             let racun;
             let uid = job.kompanijaUid + '';
             let klijentuid = job.klijentUid + '';
+            const pracunId = job.id;
             const docKey = mkkey(20);
             const queryKomp = db.collection('kompanija').doc(uid);
             await queryKomp.get().then(snap => {
-                racun = snap.data().racun + 1 + ind;
 
-            }).then(() => { queryKomp.update({ racun: Number(racun) }) })
+                racun = snap.data().racun + 1 + ind;
+                console.log(racun)
+
+            })
+                .then(() => { queryKomp.update({ racun: Number(racun) }) })
+                .catch(err => console.log(err))
             try {
 
                 const datumI = new Date().valueOf();
@@ -82,7 +99,7 @@ exports.scheduledFunction = functions.pubsub.schedule('00 08 1 1/1 *')
                         db.collection('klijenti').doc(klijentuid).collection('racun').doc(docKey)
                             .set({ ...job, datumIzdavanja: datumI, datumVazenja: datumV, brojracuna: racun })
                     }).then(() => {
-                        queryKomp.collection('pracun').doc(docKey).update({ pocetniDatum: new Date(datumI).valueOf() })
+                        db.collection('kompanija').doc(uid).collection('pracun').doc(pracunId).update({ pocetniDatum: new Date(datumI).valueOf() })
                     })
 
 
@@ -94,4 +111,41 @@ exports.scheduledFunction = functions.pubsub.schedule('00 08 1 1/1 *')
         });
 
         return await Promise.all(jobs);
+    });
+
+exports.noviRacun = functions.firestore
+    .document('/kompanija/{uid}/racun/{id}')
+    .onCreate((snap, context) => {
+        const uid = context.params.uid;
+        const id = context.params.id;
+        //foreach
+        const mailOptions = {
+            from: `UPRAVITELJ ZGRADE`,
+            to: 'viktor.molnar1992@gmail.com',
+            subject: '⚠️IMATE NOVO OBAVESTENJE⚠️', // email subject
+            html: `
+     <html>
+     <body style="color:black;">
+          <h3>✋✋Pozdrav,</h3></br>${uid, id}
+          <h4 >Imate novo obavestenje na portal <span style="color:red;">Moja zgrada PFS.</span></h4>
+          <a href= 'https://pfs-portal-20.firebaseapp.com' target="blank">🔗 Link do sajta</a>
+    <h6>✋ Vas, PROFESIONALI UPRAVITELJI TIM 😊</h6>
+      </body>
+  
+     </html>
+     `
+        };
+
+        // returning result
+        // tslint:disable-next-line: no-void-expression
+        return transporter.sendMail(mailOptions, erro => {
+            if (erro) {
+
+                return erro;
+            }
+
+            return null;
+        });
+
+
     });

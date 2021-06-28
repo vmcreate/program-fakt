@@ -13,7 +13,7 @@ export class DomenComponent implements OnInit {
   domeni?: Array<any> = [];
   dataSource?: any;
   kompanijaId?: any;
-  displayedColumns: string[] = ['ime', 'klijent', 'datumD', 'cena', 'troskovi', 'detalji'];
+  displayedColumns: string[] = ['ime', 'klijent', 'datumI', 'cena', 'troskovi', 'detalji'];
   neNaplceni?: Array<any> = [];
   naplaceniProizvod?: Array<any> = [];
   trosak?: number = 0;
@@ -46,9 +46,18 @@ export class DomenComponent implements OnInit {
           this.trosak = this.domeni?.reduce((a, b) => a + b.troskovi, 0)
           this.ukupno = this.domeni?.reduce((a, b) => a + b.cena, 0)
           this.prihod = Number(this.ukupno) - Number(this.trosak);
+          this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+            switch (property) {
+              case 'datumI': {
+                let newDate = new Date(item.datumIsteka).valueOf();
+                return newDate;
+              }
 
-
+              default: return item[property];
+            }
+          };
         })
+
       }
 
     })

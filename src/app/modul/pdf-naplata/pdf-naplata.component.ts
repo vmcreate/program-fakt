@@ -28,6 +28,7 @@ export class PdfNaplataComponent implements OnInit {
   @Input('klijentPib') klijentPib?: any;
   @Input('klijentMB') klijentMB?: any;
   @Input('mesto') mesto?: string;
+  @Input('faktura') faktura?: string;
 
   ngOnInit(): void {
   }
@@ -44,7 +45,11 @@ export class PdfNaplataComponent implements OnInit {
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.save('MYPdf.pdf'); // Generated PDF   
+      pdf.save(`${this.faktura} - ${this.brojracuna}-${this.godina} - ${this.kompanija?.kompanija}.pdf`); // Generated PDF  
+
     });
+  }
+  posalji() {
+    console.log('email')
   }
 }

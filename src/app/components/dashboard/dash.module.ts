@@ -35,6 +35,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { HeaderStatComponent } from 'src/app/modul/header-stat/header-stat.component';
 import { PdfTableComponent } from 'src/app/modul/pdf-table/pdf-table.component';
 import { PdfNaplataComponent } from 'src/app/modul/pdf-naplata/pdf-naplata.component';
+import { StatistikaKlijentaComponent } from 'src/app/modul/statistika-klijenta/statistika-klijenta.component';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { PdfNaplataComponent } from 'src/app/modul/pdf-naplata/pdf-naplata.compo
     StatistikaKlijentiComponent, ZaradaComponent, DomenComponent,
     InformacijeComponent, NoviDomenComponent,
     DomenInformacijeComponent, DaterangeComponent
-    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent
+    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent, StatistikaKlijentaComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule, NgApexchartsModule

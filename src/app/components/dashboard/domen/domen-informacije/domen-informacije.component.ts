@@ -58,10 +58,16 @@ export class DomenInformacijeComponent implements OnInit, OnDestroy {
   }
   updateProizvod(f: NgForm) {
     let datumD = this.domen?.datumDodele;
+    let datumI = this.domen?.datumIsteka;
     if (datumD === null) {
       datumD = new Date().valueOf();
     }
-    this.proizvodService.updateDomen(this.kompanijaId, this.domen?.id, { ...f.value, datumDodele: datumD, napomena: 'Domen' })
+    if (datumI !== null) {
+      datumI = new Date(datumI).valueOf();
+    } else {
+      datumI = null;
+    }
+    this.proizvodService.updateDomen(this.kompanijaId, this.domen?.id, { ...f.value, datumDodele: datumD, datumIsteka: datumI, napomena: 'Domen' })
       .then(() => this.router.navigate(['/dashboard/', 'domen']))
   }
   deleteProizvod() {
@@ -71,6 +77,7 @@ export class DomenInformacijeComponent implements OnInit, OnDestroy {
   compareObjects(o1: any, o2: any): boolean {
     return o1.firma === o2.firma;
   }
+
   ngOnDestroy() {
     this.routeSub?.unsubscribe();
   }

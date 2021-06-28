@@ -47,7 +47,7 @@ export class PonudaDetaljiComponent implements OnInit, OnDestroy {
   klijentMB: any;
   backgroundImg?: any;
   racun: any;
-
+  predracun = 'Predracun';
   constructor(private klijentService: KlijentService,
     private proizvodService: ProizvodService,
     private kompanijaService: KompanijaService,

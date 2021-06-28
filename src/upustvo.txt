@@ -15,10 +15,17 @@
 --Zakazane funkcije treba menjati brojracuna,datum izdavanja i vazenja i upisivate nove racune x
 --dodavanje filtera i sortiranja na tabele *
 --dodavanje domena- posebna stranica domeni, gde dodamo domen i ime klijenta, pa kad pravimo racun/predracun izadje nam domen u proizvode. x
---statistika klijenta/statistika usluga VELIK POSAO!
---PDF
---PLAN ZA DATE RANGE, ZNACI DA BUDE ZAJEDNICKA KOMPONENTA, DATUM DODELE/IZDAVANJA DA SE FILTRIRA, 
-VECI OD POCETNOG A MANJI OD ZAVRSNOG DATUMA U TAJ OKVIR
+--statistika klijenta/statistika usluga VELIK POSAO! x
+--PDF x
+--PLAN ZA DATE RANGE, ZNACI DA BUDE ZAJEDNICKA KOMPONENTA, DATUM DODELE/IZDAVANJA DA SE FILTRIRA x
+--VECI OD POCETNOG A MANJI OD ZAVRSNOG DATUMA U TAJ OKVIR x
+--!!!!!!!!!!!ERROR KOD PONAVLJAJUCI RACUNA TEST!!!!!!!!!!
+--SLANJE EMAIL x
+--KLIJENT PROFIL ISTORIJA NJEGOVA x
+--DA ZELENO, NE CRVENO x
+--IME FAJLA Predracun - 0107-2021 - ATLAS SERVIS DOO.pdf x
+--rucna dodela isteka domena x
+--KLIJENT PROIZVOD DOMEN NA KLIK 
 
 
 

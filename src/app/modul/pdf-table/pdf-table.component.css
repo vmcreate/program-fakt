@@ -18,7 +18,9 @@ button{
     font-weight: 700 !important;
     position: absolute;
     left: 0;
-    transform: translateX(-1300px);
+    top: 0;
+   transform: translateX(-1300px);
+   
   }
   .kompanijaInfo,.klijentInfo{
     display: flex;

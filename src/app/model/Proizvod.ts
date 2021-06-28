@@ -10,4 +10,5 @@ export interface Proizvod {
     troskovi?: number;
     datumDodele?: any;
     klijent?: Klijent;
+    datumIsteka?: any;
 }

@@ -67,6 +67,7 @@ export class PostavkeComponent implements OnInit, OnDestroy {
           data.ref.getDownloadURL().then(imageUrl => {
             this.kompanijaService.updateKompaniju(this.kompanija?.id, { imageUrl: fileR })
             this.imageUrl = imageUrl;
+            console.log(imageUrl)
             this.kompanijaService.toast('Logo je otpremljen', 'OK')
           })
 

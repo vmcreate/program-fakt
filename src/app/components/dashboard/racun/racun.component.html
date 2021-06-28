@@ -54,8 +54,10 @@
         <ng-container matColumnDef="placeno">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Placeno </th>
             <td mat-cell *matCellDef="let element">
-                <button color="warn" (click)="placenoToggle(element)" mat-button>{{element.placeno === true?
-                    'DA':'NE'}}</button>
+                <button *ngIf="!element.placeno" color="warn" (click)="placenoToggle(element)" mat-button>
+                    NE</button>
+                <button *ngIf="element.placeno" color="accent" (click)="placenoToggle(element)" mat-button>
+                    DA</button>
             </td>
         </ng-container>
         <ng-container matColumnDef="detalji">
@@ -67,5 +69,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <pdf-table *ngIf="dataSource" [klijenti]="dataSource.data" [ukupniTrosak]="ukupniTrosak" [nenaplaceno]="nenaplaceno"
-        [ukupniPrihod]="ukupniPrihod" [pickDatumOd]="pickDatumOd" [pickDatumDo]="pickDatumDo"></pdf-table>
+        [ukupniPrihod]="ukupniPrihod" [pickDatumOd]="pickDatumOd" [pickDatumDo]="pickDatumDo">
+    </pdf-table>
 </div>

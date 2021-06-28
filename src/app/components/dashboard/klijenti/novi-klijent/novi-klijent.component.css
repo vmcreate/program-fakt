@@ -18,8 +18,9 @@ form .klijent-card mat-card-content{
 }
 .dugmad{
     display: flex;  
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: 100%;
 }
 .dugmad button{
     margin-right: 3px;

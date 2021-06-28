@@ -41,14 +41,20 @@ export class NoviDomenComponent implements OnInit {
     this.location.back();
   }
   dodajDomen(f: NgForm) {
-    let { ime, klijent, datumDodele, cena, troskovi }: any = f.value;
+    let { ime, klijent, datumDodele, cena, troskovi, datumIsteka }: any = f.value;
+    let datumI;
     if (klijent !== '') {
       datumDodele = new Date().valueOf();
     } else {
       datumDodele = null;
       klijent = {}
     }
-    this.proizvodService.dodajDomen(this.kompanijaId, { ime, klijent, datumDodele, cena, troskovi, napomena: 'Domen' }).then(() => {
+    if (datumIsteka) {
+      datumI = new Date(datumIsteka).valueOf();
+    } else {
+      datumI = null;
+    }
+    this.proizvodService.dodajDomen(this.kompanijaId, { ime, klijent, datumDodele, cena, troskovi, datumIsteka: datumI, napomena: 'Domen' }).then(() => {
       this.goBack()
     })
 
