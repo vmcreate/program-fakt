@@ -61,6 +61,7 @@ export class RacunComponent implements OnInit {
           res.map((predracun: any) => {
             this.racuni?.push({ ...predracun.payload.doc.data(), id: predracun.payload.doc.id })
             this.dataSource = new MatTableDataSource();
+
             this.dataSource.data = this.racuni;
             this.dataSource.sort = this.sort;
             if (predracun.payload.doc.data().status === 'zavrseno') {

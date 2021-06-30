@@ -132,23 +132,7 @@ export class NovRacunComponent implements OnInit {
     this.sveUkupno = this.ukupno - this.deposit - this.popust;
 
   }
-  public convetToPDF() {
-    const data: any = document.getElementById('contentToConvert');
-    html2canvas(data).then(canvas => {
-      // Few necessary setting options
-      const imgWidth = 200;
-      const pageHeight = 295;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      const heightLeft = imgHeight;
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
-      const position = 0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.autoPrint();
-      pdf.output('dataurlnewwindow');
-      // pdf.save('new-file.pdf'); // Generated PDF
-    });
-  }
+
   izaberiFirmu(klijent: Klijent) {
     this.izabraniProizvodi = [];
     this.proizvodi = [];

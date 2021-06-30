@@ -76,37 +76,40 @@ exports.scheduledFunction = functions.pubsub.schedule('00 08 1 1/1 *')
 
             })
                 .then(() => { queryKomp.update({ racun: Number(racun) }) })
-                .catch(err => console.log(err))
-            try {
+                .then(() => {
+                    try {
 
-                const datumI = new Date().valueOf();
-                const datumV = new Date(datumI).valueOf() + 2592000000;
-                if (racun < 10) {
-                    (racun = '000' + racun.toString());
-                }
-                else if (racun < 100) {
-                    (racun = '00' + racun.toString());
-                }
-                else if (racun < 1000) {
-                    (racun = '0' + racun.toString());
-                }
-                else {
-                    (racun = racun);
-                }
-                db.collection('kompanija').doc(uid).collection('racun').doc(docKey)
-                    .set({ ...job, datumIzdavanja: datumI, datumVazenja: datumV, brojracuna: racun })
-                    .then(() => {
-                        db.collection('klijenti').doc(klijentuid).collection('racun').doc(docKey)
+                        const datumI = new Date().valueOf();
+                        const datumV = new Date(datumI).valueOf() + 2592000000;
+                        if (racun < 10) {
+                            (racun = '000' + racun.toString());
+                        }
+                        else if (racun < 100) {
+                            (racun = '00' + racun.toString());
+                        }
+                        else if (racun < 1000) {
+                            (racun = '0' + racun.toString());
+                        }
+                        else {
+                            (racun = racun);
+                        }
+                        db.collection('kompanija').doc(uid).collection('racun').doc(docKey)
                             .set({ ...job, datumIzdavanja: datumI, datumVazenja: datumV, brojracuna: racun })
-                    }).then(() => {
-                        db.collection('kompanija').doc(uid).collection('pracun').doc(pracunId).update({ pocetniDatum: new Date(datumI).valueOf() })
-                    })
+                            .then(() => {
+                                db.collection('klijenti').doc(klijentuid).collection('racun').doc(docKey)
+                                    .set({ ...job, datumIzdavanja: datumI, datumVazenja: datumV, brojracuna: racun })
+                            }).then(() => {
+                                db.collection('kompanija').doc(uid).collection('pracun').doc(pracunId).update({ pocetniDatum: new Date(datumI).valueOf() })
+                            })
 
 
-            }
-            catch (err) {
-                return err
-            }
+                    }
+                    catch (err) {
+                        return err
+                    }
+                })
+                .catch(err => console.log(err))
+
 
         });
 
@@ -118,7 +121,7 @@ exports.noviRacun = functions.firestore
     .onCreate((snap, context) => {
         const uid = context.params.uid;
         const id = context.params.id;
-        //foreach
+
         const mailOptions = {
             from: `UPRAVITELJ ZGRADE`,
             to: 'viktor.molnar1992@gmail.com',

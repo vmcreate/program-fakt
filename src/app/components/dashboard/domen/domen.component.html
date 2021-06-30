@@ -33,7 +33,8 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="klijent">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Klijent </th>
-        <td mat-cell *matCellDef="let element"> {{element.klijent}} </td>
+        <td mat-cell *matCellDef="let element"><a [routerLink]="[ '/dashboard/klijenti/',element.klijentUid ]"
+                routerLinkActive="active">{{element.klijent}}</a> </td>
     </ng-container>
     <!-- <ng-container matColumnDef="datumD">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum dodele </th>

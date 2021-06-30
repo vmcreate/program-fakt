@@ -36,7 +36,8 @@ export class DomenComponent implements OnInit {
             this.domeni?.push({
               ...proizvod.payload.doc.data(),
               klijent: proizvod.payload.doc.data().klijent.firma,
-              id: proizvod.payload.doc.id
+              id: proizvod.payload.doc.id,
+              klijentUid: proizvod.payload.doc.data().klijent.id
             })
           }))
 
