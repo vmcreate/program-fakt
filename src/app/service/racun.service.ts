@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Pracun } from '../model/Pracun';
 import { Predracun } from '../model/Predracun';
@@ -9,7 +10,7 @@ import { Predracun } from '../model/Predracun';
 })
 export class RacunService {
 
-  constructor(private db: AngularFirestore, private router: Router) { }
+  constructor(private db: AngularFirestore, private router: Router, private storage: AngularFireStorage) { }
   //PROFAKTURA/PREDRACUN
   zapamtiNacrt(kompanijaId: any, data: Predracun, klijentId: any) {
     const key = this.makeid(15);
@@ -108,6 +109,18 @@ export class RacunService {
       console.log(err)
     }
 
+  }
+  uploadPdf(racunId: string, file: any) {
+
+    const data = this.storage.ref(`/racun-pdf/${racunId}`);
+    data.put(file, { contentType: "application/pdf" })
+
+  }
+  getPdf(racunId: string) {
+    return this.storage.ref(`/racun-pdf/${racunId}`).getDownloadURL();
+  }
+  getEmail() {
+    return 'https://us-central1-fakt-program.cloudfunctions.net/posaljiRacun?';
   }
 }
 

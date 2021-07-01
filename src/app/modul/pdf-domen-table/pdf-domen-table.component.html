@@ -1,0 +1,42 @@
+<button (click)="convetToPDF()" mat-raised-button color="warn"><span class="material-icons">
+        print
+    </span> Stampaj PDF</button>
+<div class="nevidljivPDF">
+    <div id="pdf">
+        <h1>Izvestaj Domena za period:{{pickDatumOd | date:'dd.MM.YYYY' }} - {{pickDatumDo | date:'dd.MM.YYYY'}}</h1>
+
+        <h2>STAVKE</h2>
+        <hr>
+        <div class="proizvod">
+            <table>
+                <tr>
+                    <th>Domen</th>
+                    <th>Ime Klijenta</th>
+                    <th>Datum Od</th>
+                    <th>Datum Do</th>
+                    <th>Iznost</th>
+
+                </tr>
+                <tr *ngFor="let k of klijenti; let i = index;">
+                    <td>{{k.ime}}</td>
+                    <td>{{k.klijent}}</td>
+                    <td>{{k.datumDodele | date:'dd.MM.YYYY'}}</td>
+                    <td>{{k.datumIsteka | date:'dd.MM.YYYY'}}</td>
+                    <td>{{k.ukupno + ',00 RSD'}}</td>
+
+
+                </tr>
+
+            </table>
+        </div>
+        <div class="cenaKonacna">
+            <div class="info">
+                <ul>
+                    <li>Ukupni prihod: {{ukupniPrihod}}.00 RSD</li>
+                    <li>Ukupni troskovi: {{ukupniTrosak}}.00 RSD</li>
+                    <li>Nenaplaceno: {{nenaplaceno}}.00 RSD</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

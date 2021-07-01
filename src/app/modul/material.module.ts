@@ -28,6 +28,7 @@ import { MatRippleModule } from '@angular/material/core';
 
 
 
+
 const MaterialComponents = [
     MatButtonModule,
     MatIconModule,
@@ -66,6 +67,7 @@ const MaterialComponents = [
         MaterialComponents
     ],
     declarations: [
+
     ]
 })
 export class MaterialModule { }

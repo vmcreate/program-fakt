@@ -4,16 +4,18 @@ import { Proizvod } from 'src/app/model/Proizvod';
 import jspdf from 'jspdf';
 declare var jsPDF: any;
 import html2canvas from 'html2canvas';
+import { RacunService } from 'src/app/service/racun.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'pdf-naplata',
   templateUrl: './pdf-naplata.component.html',
   styleUrls: ['./pdf-naplata.component.css']
 })
 export class PdfNaplataComponent implements OnInit {
+  fajl: any;
 
 
-
-  constructor() { }
+  constructor(private racunService: RacunService, private http: HttpClient) { }
   @Input('kompanija') kompanija?: Kompanija;
   @Input('izabraniProizvodi') izabraniProizvodi?: Array<Proizvod>;
   @Input('brojracuna') brojracuna?: any;
@@ -29,12 +31,12 @@ export class PdfNaplataComponent implements OnInit {
   @Input('klijentMB') klijentMB?: any;
   @Input('mesto') mesto?: string;
   @Input('faktura') faktura?: string;
-
+  @Input('routeId') routeId?: any;
   ngOnInit(): void {
   }
-  public convetToPDF() {
+  public async convetToPDF() {
     var data: any = document.getElementById('pdf');
-    html2canvas(data).then(canvas => {
+    await html2canvas(data).then(canvas => {
       // Few necessary setting options  
       var imgWidth = 208;
       var pageHeight = 295;
@@ -46,10 +48,29 @@ export class PdfNaplataComponent implements OnInit {
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
       pdf.save(`${this.faktura} - ${this.brojracuna}-${this.godina} - ${this.kompanija?.kompanija}.pdf`); // Generated PDF  
+      const file = pdf.output("blob");
+      this.racunService.uploadPdf(`${this.faktura} - ${this.brojracuna}-${this.godina} - ${this.kompanija?.kompanija}.pdf`, file)
+
 
     });
   }
+  otpremiFajl() {
+    this.convetToPDF()
+  }
   posalji() {
-    console.log('email')
+
+    this.racunService.getPdf(`${this.faktura} - ${this.brojracuna}-${this.godina} - ${this.kompanija?.kompanija}.pdf`).subscribe((pdf: string) => {
+      const newPdf = pdf.replace('racun-pdf/', 'racun-pdf%2F')
+      console.log(newPdf)
+      this.http
+        .get(
+          `${this.racunService.getEmail()}dest=${this.kompanija?.email}&pdf=${newPdf}`,
+          {
+            responseType: 'text'
+          }
+        )
+        .subscribe();
+    })
+
   }
 }

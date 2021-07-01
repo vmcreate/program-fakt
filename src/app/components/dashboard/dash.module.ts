@@ -36,6 +36,7 @@ import { HeaderStatComponent } from 'src/app/modul/header-stat/header-stat.compo
 import { PdfTableComponent } from 'src/app/modul/pdf-table/pdf-table.component';
 import { PdfNaplataComponent } from 'src/app/modul/pdf-naplata/pdf-naplata.component';
 import { StatistikaKlijentaComponent } from 'src/app/modul/statistika-klijenta/statistika-klijenta.component';
+import { PdfDomenTableComponent } from 'src/app/modul/pdf-domen-table/pdf-domen-table.component';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { StatistikaKlijentaComponent } from 'src/app/modul/statistika-klijenta/s
     StatistikaKlijentiComponent, ZaradaComponent, DomenComponent,
     InformacijeComponent, NoviDomenComponent,
     DomenInformacijeComponent, DaterangeComponent
-    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent, StatistikaKlijentaComponent
+    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent, StatistikaKlijentaComponent, PdfDomenTableComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule, NgApexchartsModule

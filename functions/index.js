@@ -152,3 +152,35 @@ exports.noviRacun = functions.firestore
 
 
     });
+exports.posaljiRacun = functions.https.onRequest((req, res) => {
+    cors(req, res, () => {
+        // getting dest email by query string
+        const dest = req.query.dest;
+        const pdf = req.query.pdf;
+        const mailOptions = {
+            from: `PROGRAM ZA FAKTURU`,
+            to: dest,
+            subject: 'Faktura', // email subject
+            html: `
+             <html>
+             <h1>Obevestenje o prispelom racunu.</h1>
+             <body>
+             <h4>
+             <a href="${pdf.replace('racun-pdf/', 'racun-pdf%2F')}"> Kliknite da bi ste preuzeli racun. </a>
+            
+             </h4>
+              </body>
+           
+             </html>
+             `
+        };
+
+        // returning result
+        return transporter.sendMail(mailOptions, (erro, info) => {
+            if (erro) {
+                return res.send(erro.toString());
+            }
+            return res.send('Sended');
+        });
+    });
+});
