@@ -1,1 +1,4 @@
 @import '../klijenti/klijenti.component.css';
+mat-divider{
+    margin-top: 10px;
+}

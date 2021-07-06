@@ -53,11 +53,15 @@ export class StatistikaKlijentiComponent implements OnInit, OnDestroy {
     })
 
     this.racuniService.getRacuneCG().subscribe(res => {
+      this.dstatistika = [];
+      this.racuniCG = [];
       res.map((racun: any) => {
-        const id = racun.payload.doc.id;
+        const id = racun.payload.doc.data().kompanijaUid;
         const data = racun.payload.doc.data().proizvodi;
+        if (id === this.kompanijaId) {
+          this.racuniCG?.push(...data)
+        }
 
-        this.racuniCG?.push(...data)
       })
 
       this.racuniCG?.forEach(function (i) { brojDoktori[i.ime] = (brojDoktori[i.ime] || 0) + 1; });
