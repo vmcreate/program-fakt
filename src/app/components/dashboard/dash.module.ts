@@ -37,6 +37,7 @@ import { PdfTableComponent } from 'src/app/modul/pdf-table/pdf-table.component';
 import { PdfNaplataComponent } from 'src/app/modul/pdf-naplata/pdf-naplata.component';
 import { StatistikaKlijentaComponent } from 'src/app/modul/statistika-klijenta/statistika-klijenta.component';
 import { PdfDomenTableComponent } from 'src/app/modul/pdf-domen-table/pdf-domen-table.component';
+import { ChartModule } from 'primeng/chart';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { PdfDomenTableComponent } from 'src/app/modul/pdf-domen-table/pdf-domen-
     , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent, StatistikaKlijentaComponent, PdfDomenTableComponent
   ],
   imports: [
-    CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule, NgApexchartsModule
+    CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule,
+    ChartModule
   ]
 })
 export class DashModule { }

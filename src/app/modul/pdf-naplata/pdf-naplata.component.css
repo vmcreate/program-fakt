@@ -60,3 +60,13 @@ justify-content: flex-end;
   }
 
   canvas#viewport { border: 1px solid white; width: 250px; height: 250px;}
+  @media screen and (max-width:920px){
+    .kontrole{
+      display: flex;
+     flex-direction: column;
+    }
+    .kontrole button{
+      margin: 2px;
+      width: 100%;
+    }
+  }

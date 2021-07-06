@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { RacunService } from 'src/app/service/racun.service';
 
 @Component({
   selector: 'app-statistika-klijenti',
@@ -22,14 +23,16 @@ export class StatistikaKlijentiComponent implements OnInit, OnDestroy {
   subKlijent?: Subscription;
   kompanijaId: any;
   isLoading?: boolean;
-
-  constructor(private klijentiService: KlijentService, private kompanijaService: KompanijaService) {
+  racuniCG?: Array<any> = [];
+  dstatistika: Array<any> = [];
+  color = '#3690f42b';
+  constructor(private klijentiService: KlijentService, private kompanijaService: KompanijaService, private racuniService: RacunService) {
 
   }
   @ViewChild(MatSort) sort?: MatSort;
 
   ngOnInit() {
-
+    let brojDoktori: any = {};
     this.kompanijaService.getKompaniju()
     this.isLoading = true;
     this.subKompanija = this.kompanijaService.getIzabranuKompaniju().subscribe(res => {
@@ -46,6 +49,20 @@ export class StatistikaKlijentiComponent implements OnInit, OnDestroy {
           this.dataSource.sort = this.sort;
 
         })
+      }
+    })
+
+    this.racuniService.getRacuneCG().subscribe(res => {
+      res.map((racun: any) => {
+        const id = racun.payload.doc.id;
+        const data = racun.payload.doc.data().proizvodi;
+
+        this.racuniCG?.push(...data)
+      })
+
+      this.racuniCG?.forEach(function (i) { brojDoktori[i.ime] = (brojDoktori[i.ime] || 0) + 1; });
+      for (let [key, value] of Object.entries(brojDoktori)) {
+        this.dstatistika?.push({ proizvod: key, broj: Number(value) / 2 })
       }
     })
 

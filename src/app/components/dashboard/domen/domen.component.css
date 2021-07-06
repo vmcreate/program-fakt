@@ -3,3 +3,6 @@
 td, th {
     width: 20%;
   }
+  .headerStat .mat-card-title{
+    font-size: 1rem;
+}

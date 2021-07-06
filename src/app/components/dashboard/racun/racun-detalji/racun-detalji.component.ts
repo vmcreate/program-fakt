@@ -256,7 +256,7 @@ export class RacunDetaljiComponent implements OnInit, OnDestroy {
       })
       .then(() => this.router.navigateByUrl('/dashboard/racun'))
   }
-  posalji() { }
+
   deleteP() {
     this.racunService.deleteRacun(this.kompanijaId, this.routeId, this.KlijentUid)
       .then(() => {

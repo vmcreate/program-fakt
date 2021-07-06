@@ -1,8 +1,11 @@
-<button (click)="convetToPDF()" mat-raised-button color="warn"><span class="material-icons">
-        print
-    </span> Stampaj PDF</button>
-<button mat-flat-button color="accent" (click)="otpremiFajl()">Spremi PDF</button>
-<button mat-flat-button color="primary" (click)="posalji()">Posalji na E-mail</button>
+<div class="kontrole">
+    <button (click)="convetToPDF()" mat-raised-button color="warn"><span class="material-icons">
+            print
+        </span> Stampaj PDF</button>
+    <button mat-flat-button color="accent" (click)="otpremiFajl()">Spremi PDF</button>
+    <button mat-flat-button color="primary" (click)="posalji()">Posalji na E-mail</button>
+</div>
+
 <div id="pdf">
     <div class="kompanijaInfo">
         <div class="info">

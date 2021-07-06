@@ -4,13 +4,14 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Pracun } from '../model/Pracun';
 import { Predracun } from '../model/Predracun';
+import { KompanijaService } from './kompanija.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RacunService {
 
-  constructor(private db: AngularFirestore, private router: Router, private storage: AngularFireStorage) { }
+  constructor(private db: AngularFirestore, private router: Router, private storage: AngularFireStorage, private kompanijaService: KompanijaService) { }
   //PROFAKTURA/PREDRACUN
   zapamtiNacrt(kompanijaId: any, data: Predracun, klijentId: any) {
     const key = this.makeid(15);
@@ -113,7 +114,9 @@ export class RacunService {
   uploadPdf(racunId: string, file: any) {
 
     const data = this.storage.ref(`/racun-pdf/${racunId}`);
-    data.put(file, { contentType: "application/pdf" })
+    data.put(file, { contentType: "application/pdf" }).then(() => {
+      this.kompanijaService.toast('PDF UPLOADOVAN!', 'OK')
+    })
 
   }
   getPdf(racunId: string) {
@@ -121,6 +124,9 @@ export class RacunService {
   }
   getEmail() {
     return 'https://us-central1-fakt-program.cloudfunctions.net/posaljiRacun?';
+  }
+  getRacuneCG() {
+    return this.db.collectionGroup('racun').snapshotChanges();
   }
 }
 

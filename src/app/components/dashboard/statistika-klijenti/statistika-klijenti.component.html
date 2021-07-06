@@ -38,3 +38,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
+<mat-divider></mat-divider>
+<h2>Statistika Proizvoda</h2>
+<mat-list>
+    <mat-list-item matRipple *ngFor="let p of dstatistika" [matRippleColor]="color">
+        <mat-icon mat-list-icon>precision_manufacturing</mat-icon>
+        <div mat-line>{{p.proizvod}} - {{p.broj}}</div>
+    </mat-list-item>
+</mat-list>

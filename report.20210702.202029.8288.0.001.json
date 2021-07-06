@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20210529.170225.6128.0.001.json",
-    "dumpEventTime": "2021-05-29T17:02:25Z",
-    "dumpEventTimeStamp": "1622300545360",
-    "processId": 6128,
+    "filename": "report.20210702.202029.8288.0.001.json",
+    "dumpEventTime": "2021-07-02T20:20:29Z",
+    "dumpEventTimeStamp": "1625250029762",
+    "processId": 8288,
     "cwd": "D:\\PROGRAMIRANJE\\program-fakt",
     "commandLine": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -52,38 +52,38 @@
       {
         "model": "Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz",
         "speed": 2394,
-        "user": 32109328,
+        "user": 39374531,
         "nice": 0,
-        "sys": 14804156,
-        "idle": 216685875,
-        "irq": 2398968
+        "sys": 17872234,
+        "idle": 229476453,
+        "irq": 2767500
       },
       {
         "model": "Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz",
         "speed": 2394,
-        "user": 31129125,
+        "user": 37957781,
         "nice": 0,
-        "sys": 10113156,
-        "idle": 222356796,
-        "irq": 590109
+        "sys": 12904218,
+        "idle": 235860953,
+        "irq": 635203
       },
       {
         "model": "Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz",
         "speed": 2394,
-        "user": 34552703,
+        "user": 43112515,
         "nice": 0,
-        "sys": 10090531,
-        "idle": 218955859,
-        "irq": 214796
+        "sys": 12852265,
+        "idle": 230758187,
+        "irq": 242265
       },
       {
         "model": "Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz",
         "speed": 2394,
-        "user": 33846625,
+        "user": 41543078,
         "nice": 0,
-        "sys": 9589796,
-        "idle": 220162625,
-        "irq": 167593
+        "sys": 11130125,
+        "idle": 234049750,
+        "irq": 206843
       }
     ],
     "networkInterfaces": [
@@ -132,75 +132,75 @@
   },
   "nativeStack": [
     {
-      "pc": "0x00007ff6075c19f9",
+      "pc": "0x00007ff6b56c19f9",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
     },
     {
-      "pc": "0x00007ff6075c5e1c",
+      "pc": "0x00007ff6b56c5e1c",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
     },
     {
-      "pc": "0x00007ff6075c4dd8",
+      "pc": "0x00007ff6b56c4dd8",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
     },
     {
-      "pc": "0x00007ff6076c34cb",
+      "pc": "0x00007ff6b57c34cb",
       "symbol": "v8::base::CPU::has_sse+38363"
     },
     {
-      "pc": "0x00007ff607ed9f4e",
+      "pc": "0x00007ff6b5fd9f4e",
       "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
     },
     {
-      "pc": "0x00007ff607ec2021",
+      "pc": "0x00007ff6b5fc2021",
       "symbol": "v8::SharedArrayBuffer::Externalize+833"
     },
     {
-      "pc": "0x00007ff607d8e57c",
+      "pc": "0x00007ff6b5e8e57c",
       "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
     },
     {
-      "pc": "0x00007ff607d997d0",
+      "pc": "0x00007ff6b5e997d0",
       "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
     },
     {
-      "pc": "0x00007ff607d962f4",
+      "pc": "0x00007ff6b5e962f4",
       "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
     },
     {
-      "pc": "0x00007ff607d8bb13",
+      "pc": "0x00007ff6b5e8bb13",
       "symbol": "v8::internal::Heap::CollectGarbage+1283"
     },
     {
-      "pc": "0x00007ff607d8a184",
+      "pc": "0x00007ff6b5e8a184",
       "symbol": "v8::internal::Heap::AddRetainedMap+2452"
     },
     {
-      "pc": "0x00007ff607dab36d",
+      "pc": "0x00007ff6b5eab36d",
       "symbol": "v8::internal::Factory::NewFillerObject+61"
     },
     {
-      "pc": "0x00007ff607b10c51",
+      "pc": "0x00007ff6b5c10c51",
       "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+1665"
     },
     {
-      "pc": "0x00007ff608324ddd",
+      "pc": "0x00007ff6b6424ddd",
       "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+546637"
     },
     {
-      "pc": "0x00007ff6082ab281",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+48113"
+      "pc": "0x00007ff6b6425d0d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+550525"
     },
     {
-      "pc": "0x000003d38cc82f8d",
+      "pc": "0x0000002e01b2c7eb",
       "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 2164637696,
-    "totalCommittedMemory": 2164637696,
-    "usedMemory": 2142604008,
-    "availableMemory": 44212272,
+    "totalMemory": 2150350848,
+    "totalCommittedMemory": 2150350848,
+    "usedMemory": 2058095768,
+    "availableMemory": 49438992,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -211,38 +211,38 @@
         "available": 0
       },
       "new_space": {
-        "memorySize": 9437184,
-        "committedMemory": 9437184,
-        "capacity": 4713552,
-        "used": 1150040,
-        "available": 3563512
+        "memorySize": 2097152,
+        "committedMemory": 2097152,
+        "capacity": 1047456,
+        "used": 329496,
+        "available": 717960
       },
       "old_space": {
-        "memorySize": 1834631168,
-        "committedMemory": 1834631168,
-        "capacity": 1828120448,
-        "used": 1825362840,
-        "available": 2757608
+        "memorySize": 1688092672,
+        "committedMemory": 1688092672,
+        "capacity": 1604062952,
+        "used": 1603853824,
+        "available": 209128
       },
       "code_space": {
-        "memorySize": 20877312,
-        "committedMemory": 20877312,
-        "capacity": 19011456,
-        "used": 19011456,
+        "memorySize": 17207296,
+        "committedMemory": 17207296,
+        "capacity": 15768064,
+        "used": 15768064,
         "available": 0
       },
       "map_space": {
-        "memorySize": 5246976,
-        "committedMemory": 5246976,
-        "capacity": 4175040,
-        "used": 4175040,
+        "memorySize": 7868416,
+        "committedMemory": 7868416,
+        "capacity": 4790800,
+        "used": 4790800,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 293560320,
-        "committedMemory": 293560320,
-        "capacity": 292327536,
-        "used": 292327536,
+        "memorySize": 434200576,
+        "committedMemory": 434200576,
+        "capacity": 432776488,
+        "used": 432776488,
         "available": 0
       },
       "code_large_object_space": {
@@ -255,24 +255,24 @@
       "new_large_object_space": {
         "memorySize": 0,
         "committedMemory": 0,
-        "capacity": 4713552,
+        "capacity": 1047456,
         "used": 0,
-        "available": 4713552
+        "available": 1047456
       }
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 2028.97,
-    "kernelCpuSeconds": 80.25,
-    "cpuConsumptionPercent": 9.2469,
-    "maxRss": 2069618688,
+    "userCpuSeconds": 2034.7,
+    "kernelCpuSeconds": 61.468,
+    "cpuConsumptionPercent": 16.9758,
+    "maxRss": 2137964544,
     "pageFaults": {
-      "IORequired": 12922991,
+      "IORequired": 9929103,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 15759,
-      "writes": 16
+      "reads": 16152,
+      "writes": 23
     }
   },
   "libuv": [
@@ -281,7 +281,7 @@
     "ALLUSERSPROFILE": "C:\\ProgramData",
     "APPDATA": "C:\\Users\\Lenovo Z50-70\\AppData\\Roaming",
     "BROWSERSLIST_IGNORE_OLD_DATA": "1",
-    "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_484_ZPTZUBFGIGADNHBL",
+    "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_11432_BWOSEATYNCIKEMIP",
     "COLORTERM": "truecolor",
     "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
     "COMPUTERNAME": "DESKTOP-823R4MM",
@@ -324,7 +324,7 @@
     "TEMP": "C:\\Users\\LENOVO~1\\AppData\\Local\\Temp",
     "TERM": "cygwin",
     "TERM_PROGRAM": "vscode",
-    "TERM_PROGRAM_VERSION": "1.56.2",
+    "TERM_PROGRAM_VERSION": "1.57.1",
     "TMP": "C:\\Users\\LENOVO~1\\AppData\\Local\\Temp",
     "USERDOMAIN": "DESKTOP-823R4MM",
     "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-823R4MM",
@@ -344,21 +344,21 @@
     "C:\\WINDOWS\\System32\\KERNELBASE.dll",
     "C:\\WINDOWS\\System32\\WS2_32.dll",
     "C:\\WINDOWS\\System32\\RPCRT4.dll",
-    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
     "C:\\WINDOWS\\System32\\PSAPI.DLL",
-    "C:\\WINDOWS\\System32\\ucrtbase.dll",
     "C:\\WINDOWS\\System32\\ADVAPI32.dll",
     "C:\\WINDOWS\\System32\\msvcrt.dll",
     "C:\\WINDOWS\\System32\\sechost.dll",
     "C:\\WINDOWS\\System32\\USER32.dll",
-    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
-    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
     "C:\\WINDOWS\\System32\\win32u.dll",
     "C:\\WINDOWS\\System32\\GDI32.dll",
     "C:\\WINDOWS\\System32\\gdi32full.dll",
     "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
     "C:\\WINDOWS\\System32\\CRYPT32.dll",
     "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
     "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
     "C:\\WINDOWS\\System32\\IMM32.DLL",
     "C:\\WINDOWS\\SYSTEM32\\powrprof.dll",

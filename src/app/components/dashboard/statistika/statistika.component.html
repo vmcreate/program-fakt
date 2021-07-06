@@ -1,2 +1,8 @@
 <h2>Kontrolna tabla</h2>
+<daterange (naKlik)="onDateChange($event)"></daterange>
 <header-stat [ukupniTrosak]="ukupniTrosak" [nenaplaceno]="nenaplaceno" [ukupniPrihod]="ukupniPrihod"></header-stat>
+<div class="chartCss">
+    <div class="p-col-4">
+        <!-- Bar Chart -->
+        <p-chart type="line" [data]="dataline"></p-chart>
+    </div>

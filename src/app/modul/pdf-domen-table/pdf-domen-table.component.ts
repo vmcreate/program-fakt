@@ -21,7 +21,7 @@ export class PdfDomenTableComponent implements OnInit {
   @Input('pickDatumDo') pickDatumDo: any;
 
   ngOnInit(): void {
-    console.log(this.klijenti)
+
 
   }
   public convetToPDF() {

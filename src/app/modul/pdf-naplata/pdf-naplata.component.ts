@@ -6,6 +6,7 @@ declare var jsPDF: any;
 import html2canvas from 'html2canvas';
 import { RacunService } from 'src/app/service/racun.service';
 import { HttpClient } from '@angular/common/http';
+import { KompanijaService } from 'src/app/service/kompanija.service';
 @Component({
   selector: 'pdf-naplata',
   templateUrl: './pdf-naplata.component.html',
@@ -15,7 +16,7 @@ export class PdfNaplataComponent implements OnInit {
   fajl: any;
 
 
-  constructor(private racunService: RacunService, private http: HttpClient) { }
+  constructor(private racunService: RacunService, private http: HttpClient, private kompanijaService: KompanijaService) { }
   @Input('kompanija') kompanija?: Kompanija;
   @Input('izabraniProizvodi') izabraniProizvodi?: Array<Proizvod>;
   @Input('brojracuna') brojracuna?: any;
@@ -56,12 +57,12 @@ export class PdfNaplataComponent implements OnInit {
   }
   otpremiFajl() {
     this.convetToPDF()
+
   }
   posalji() {
 
     this.racunService.getPdf(`${this.faktura} - ${this.brojracuna}-${this.godina} - ${this.kompanija?.kompanija}.pdf`).subscribe((pdf: string) => {
       const newPdf = pdf.replace('racun-pdf/', 'racun-pdf%2F')
-      console.log(newPdf)
       this.http
         .get(
           `${this.racunService.getEmail()}dest=${this.kompanija?.email}&pdf=${newPdf}`,
@@ -69,8 +70,13 @@ export class PdfNaplataComponent implements OnInit {
             responseType: 'text'
           }
         )
-        .subscribe();
-    })
+        .subscribe(() => this.kompanijaService.toast('E-mail poslat!', 'OK'));
+    }, (error) => {
+      if (error) {
+        this.kompanijaService.toast('Pre slanja E-maila, Spremite PDF!', 'OK')
+      }
+    }
+    )
 
   }
 }

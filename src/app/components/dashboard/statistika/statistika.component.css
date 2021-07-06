@@ -8,3 +8,9 @@
     flex: 1;
     margin: 5px;
 }
+.chartCss{
+    width: 100%;
+}
+.chartCss .p-col-4{
+    width: 100%;
+}
