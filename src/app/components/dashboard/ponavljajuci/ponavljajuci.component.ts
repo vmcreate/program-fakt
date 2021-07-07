@@ -44,21 +44,24 @@ export class PonavljajuciComponent implements OnInit {
           this.dataSource.data = this.pracuni;
           this.dataSource.sort = this.sort;
         })
-        this.dataSource.sortingDataAccessor = (item: any, property: any) => {
-          switch (property) {
-            case 'iznos': return item.ukupno;
-            case 'datumI': {
+        if (this.dataSource !== undefined) {
+          this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+            switch (property) {
+              case 'iznos': return item.ukupno;
+              case 'datumI': {
 
-              let newDate = new Date(item.pocetniDatum).valueOf();
-              return newDate;
+                let newDate = new Date(item.pocetniDatum).valueOf();
+                return newDate;
+              }
+              case 'datumV': {
+                let newDate = new Date(item.zavrsniDatum).valueOf();
+                return newDate;
+              }
+              default: return item[property];
             }
-            case 'datumV': {
-              let newDate = new Date(item.zavrsniDatum).valueOf();
-              return newDate;
-            }
-            default: return item[property];
-          }
-        };
+          };
+        }
+
       })
     })
 

@@ -1,0 +1,8 @@
+@import '../../../modul/statistika-klijenta/statistika-klijenta.component.css';
+
+.dugmad{
+    margin: 10px 0;
+}
+.dugmad:first-child{
+    margin-right: 5px;
+}

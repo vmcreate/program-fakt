@@ -14,17 +14,25 @@ export class DashboardComponent implements OnInit {
   kompanije?: Array<Kompanija> = [];
   isAdmin?: boolean = false;
   izabranaKompanija?: string;
+
   constructor(public dialog: MatDialog, private kompanijaDb: KompanijaService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.kompanijaDb.getKompanije().subscribe(res => {
+
       this.kompanije = [];
       res.map(item => {
 
         this.kompanije?.push({ ...item.payload.doc.data() as Kompanija, id: item.payload.doc.id })
       })
     })
-    this.kompanijaDb.getIsAdmin().subscribe(res => this.isAdmin = res)
+    this.kompanijaDb.getIzabranuKompaniju().subscribe(res => {
+      if (res !== 'klijent') {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    })
   }
   dodajPreduzece(): void {
     const dialogRef = this.dialog.open(NovaKompanijaFormaComponent, {

@@ -12,7 +12,7 @@ export class AuthService {
     return this.auth.authState;
   }
   login(email: string, password: string) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+    return this.auth.signInWithEmailAndPassword(email, password)
   }
   logout() {
     return this.auth.signOut();

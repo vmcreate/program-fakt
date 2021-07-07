@@ -80,21 +80,24 @@ export class RacunComponent implements OnInit {
           this.ukupniTrosak = this.ukupniTrosakRacuni.reduce((a, b) => a + b.troskovi, 0);
           this.nenaplaceno = this.neNaplceni.reduce((a, b) => a + b.ukupno, 0);
           this.ukupniPrihod = this.naplaceniProizvod.reduce((a, b) => a + b.ukupno, 0) - Number(this.ukupniTrosak);
-          this.dataSource.sortingDataAccessor = (item: any, property: any) => {
-            switch (property) {
-              case 'iznos': return item.ukupno;
-              case 'datumI': {
+          if (this.dataSource !== undefined) {
+            this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+              switch (property) {
+                case 'iznos': return item.ukupno;
+                case 'datumI': {
 
-                let newDate = new Date(item.datumIzdavanja).valueOf();
-                return newDate;
+                  let newDate = new Date(item.datumIzdavanja).valueOf();
+                  return newDate;
+                }
+                case 'datumV': {
+                  let newDate = new Date(item.datumVazenja).valueOf();
+                  return newDate;
+                }
+                default: return item[property];
               }
-              case 'datumV': {
-                let newDate = new Date(item.datumVazenja).valueOf();
-                return newDate;
-              }
-              default: return item[property];
-            }
-          };
+            };
+          }
+
         })
       }
     })

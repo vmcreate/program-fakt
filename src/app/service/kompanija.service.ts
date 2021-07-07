@@ -9,7 +9,7 @@ import { Kompanija } from '../model/Kompanija';
 })
 export class KompanijaService {
   izabranaKompanija = new Subject<string>();
-  isAdmin = new Subject<boolean>();
+  public isAdmin = new Subject<boolean>();
   constructor(private db: AngularFirestore, private snackBar: MatSnackBar) { }
   getIzabranuKompaniju() {
 
@@ -44,10 +44,9 @@ export class KompanijaService {
         }
       });
   }
-  izaberiKompaniju(id: string) {
-    return this.db.collection('profil').doc('kompanija').set({ kompanija: id }).then(() => {
-      this.izabranaKompanija.next(id)
-    })
+  async izaberiKompaniju(id: any) {
+    await this.db.collection('profil').doc('kompanija').set({ kompanija: id });
+    this.izabranaKompanija.next(id);
   }
   updatePredracun(id: any, predracun: any) {
     return this.db.collection('kompanija').doc(id).update({ predracun: predracun });

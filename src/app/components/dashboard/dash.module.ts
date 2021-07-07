@@ -31,13 +31,13 @@ import { NoviDomenComponent } from './domen/novi-domen/novi-domen.component';
 import { DomenInformacijeComponent } from './domen/domen-informacije/domen-informacije.component';
 import { DaterangeComponent } from 'src/app/modul/daterange/daterange.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { HeaderStatComponent } from 'src/app/modul/header-stat/header-stat.component';
 import { PdfTableComponent } from 'src/app/modul/pdf-table/pdf-table.component';
 import { PdfNaplataComponent } from 'src/app/modul/pdf-naplata/pdf-naplata.component';
 import { StatistikaKlijentaComponent } from 'src/app/modul/statistika-klijenta/statistika-klijenta.component';
 import { PdfDomenTableComponent } from 'src/app/modul/pdf-domen-table/pdf-domen-table.component';
 import { ChartModule } from 'primeng/chart';
+import { ProfilKlijentaComponent } from './profil-klijenta/profil-klijenta.component';
 
 
 @NgModule({
@@ -57,7 +57,7 @@ import { ChartModule } from 'primeng/chart';
     StatistikaKlijentiComponent, ZaradaComponent, DomenComponent,
     InformacijeComponent, NoviDomenComponent,
     DomenInformacijeComponent, DaterangeComponent
-    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent, StatistikaKlijentaComponent, PdfDomenTableComponent
+    , HeaderStatComponent, PdfTableComponent, PdfNaplataComponent, StatistikaKlijentaComponent, PdfDomenTableComponent, ProfilKlijentaComponent
   ],
   imports: [
     CommonModule, MaterialModule, DashRoutingModule, FormsModule, SharedModule, ReactiveFormsModule,

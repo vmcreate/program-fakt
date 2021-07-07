@@ -11,65 +11,82 @@
         <mat-icon>recent_actors</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button [ngStyle]="{'color': k.id === izabranaKompanija ? 'red' : 'white' }" *ngFor="let k of kompanije"
-            (click)="izaberiKompaniju(k.id)" mat-menu-item> <span class="material-icons">
-                badge
-            </span> {{k.kompanija}}
-            {{ ' | '+ k.ime + ' ' + k.prezime}}
+        <div *ngIf="isAdmin">
+            <button [ngStyle]="{'color': k.id === izabranaKompanija ? 'red' : 'white' }" *ngFor="let k of kompanije"
+                (click)="izaberiKompaniju(k.id)" mat-menu-item> <span class="material-icons">
+                    badge
+                </span> {{k.kompanija}}
+                {{ ' | '+ k.ime + ' ' + k.prezime}}
 
-        </button>
-        <button (click)="dodajPreduzece()" mat-menu-item>Dodaj preduzece</button>
-        <button (click)="odjava()" mat-menu-item>Odjava</button>
+            </button>
+            <button (click)="dodajPreduzece()" mat-menu-item class="logout"> <span class="material-icons">
+                    add_business
+                </span>Dodaj preduzece</button>
+        </div>
+
+        <button (click)="odjava()" mat-menu-item class="logout"><span class="material-icons">
+                logout
+            </span>Odjava</button>
     </mat-menu>
 </mat-toolbar>
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-        <button routerLink="" class="main-btn" mat-stroked-button color="accent">
+        <button *ngIf="!isAdmin" routerLink="profil-klijenta" class="main-btn" mat-stroked-button color="accent">
             <span class="material-icons">
-                dashboard
-            </span> DASHBOARD
-        </button>
-        <button routerLink="klijenti" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                group
-            </span> KLIJENTI
-        </button>
-        <button routerLink="proizvodi" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                category
-            </span> PROIZVODI
-        </button>
-        <button routerLink="domen" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                domain
-            </span> DOMEN SERVIS
-        </button>
-        <button routerLink="ponude" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                receipt
-            </span> PONUDE
-        </button>
-        <button routerLink="racun" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                receipt_long
-            </span> RACUN
+                account_circle
+            </span> PROFIL
         </button>
 
-        <button routerLink="ponavljajuci-racun" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                restore_page
-            </span> PONAVLJAJUCI RACUN
-        </button>
-        <button routerLink="statistika-klijenti" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                leaderboard
-            </span> STATISTIKA
-        </button>
-        <button routerLink="postavke" class="main-btn" mat-stroked-button color="accent">
-            <span class="material-icons">
-                settings
-            </span> POSTAVKE
-        </button>
+        <div *ngIf="isAdmin">
+
+
+            <button routerLink="" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    dashboard
+                </span> DASHBOARD
+            </button>
+            <button routerLink="klijenti" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    group
+                </span> KLIJENTI
+            </button>
+            <button routerLink="proizvodi" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    category
+                </span> PROIZVODI
+            </button>
+            <button routerLink="domen" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    domain
+                </span> DOMEN SERVIS
+            </button>
+            <button routerLink="ponude" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    receipt
+                </span> PONUDE
+            </button>
+            <button routerLink="racun" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    receipt_long
+                </span> RACUN
+            </button>
+
+            <button routerLink="ponavljajuci-racun" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    restore_page
+                </span> PONAVLJAJUCI RACUN
+            </button>
+            <button routerLink="statistika-klijenti" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    leaderboard
+                </span> STATISTIKA
+            </button>
+            <button routerLink="postavke" class="main-btn" mat-stroked-button color="accent">
+                <span class="material-icons">
+                    settings
+                </span> POSTAVKE
+            </button>
+        </div>
     </mat-drawer>
     <div class="content">
         <router-outlet></router-outlet>
